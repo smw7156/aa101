@@ -10,7 +10,5 @@
         android:id="@+id/main_frag_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="com.example.aa101.SalesEntryFragment"
-        tools:layout="@layout/fragment_sales_entry"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>
