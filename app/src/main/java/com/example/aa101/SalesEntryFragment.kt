@@ -1,10 +1,12 @@
 package com.example.aa101
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import androidx.databinding.DataBindingUtil
 import com.example.aa101.databinding.FragmentSalesEntryBinding
 
@@ -39,6 +41,13 @@ class SalesEntryFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_sales_entry,container,false)
+
+        /**
+         * Sample to how to use autocomplete textView setting adapter. Doesn't work through xml */
+        val countries: Array<out String> = resources.getStringArray(R.array.sample_autocomplete_text_list)
+        val adapter: ArrayAdapter<String> = ArrayAdapter<String>(requireContext(),android.R.layout.simple_list_item_1,countries)
+        binding.autoCompleteTextView.setAdapter(adapter)
+
         return binding.root
     }
 

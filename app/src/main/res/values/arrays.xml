@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="sample_autocomplete_text_list">
+        <item>India</item>
+        <item>Pakistan</item>
+        <item>Afghanistan</item>
+        <item>Nepal</item>
+        <item>Bhutan</item>
+        <item>Sri Lanka</item>
+        <item>Bangladesh</item>
+        <item>Myanmar</item>
+    </string-array>
+</resources>
