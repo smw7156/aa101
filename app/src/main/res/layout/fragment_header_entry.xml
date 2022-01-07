@@ -3,19 +3,24 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="party"
+            type="Integer" />
+    </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".HeaderEntryFragment">
+        android:layout_height="match_parent">
 
         <EditText
-            android:id="@+id/editTextDate"
+            android:id="@+id/ed_received_date"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_16dp_margin"
             android:layout_marginTop="@dimen/_8dp_margin"
             android:layout_marginEnd="@dimen/_16dp_margin"
-            android:ems="10"
+            android:textSize="18sp"
             android:hint="Received Date"
             android:inputType="date"
             app:layout_constraintEnd_toEndOf="parent"
@@ -23,70 +28,69 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/editTextDate2"
+            android:id="@+id/ed_sales_date"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_16dp_margin"
-            android:ems="10"
+            android:textSize="18sp"
             android:hint="Sales Date"
             android:inputType="date"
-            app:layout_constraintEnd_toEndOf="@+id/editTextDate"
-            app:layout_constraintStart_toStartOf="@id/editTextDate"
-            app:layout_constraintTop_toBottomOf="@id/editTextDate" />
+            app:layout_constraintEnd_toEndOf="@+id/ed_received_date"
+            app:layout_constraintStart_toStartOf="@id/ed_received_date"
+            app:layout_constraintTop_toBottomOf="@id/ed_received_date" />
 
         <Spinner
-            android:id="@+id/spinner"
+            android:id="@+id/trademark_spinner"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_16dp_margin"
             android:entries="@array/sample_autocomplete_text_list"
-            app:layout_constraintEnd_toEndOf="@+id/editTextDate2"
-            app:layout_constraintStart_toStartOf="@+id/editTextDate2"
-            app:layout_constraintTop_toBottomOf="@+id/editTextDate2" />
+            app:layout_constraintEnd_toEndOf="@+id/ed_sales_date"
+            app:layout_constraintStart_toStartOf="@+id/ed_sales_date"
+            app:layout_constraintTop_toBottomOf="@+id/ed_sales_date" />
 
         <Spinner
-            android:id="@+id/spinner2"
+            android:id="@+id/no_of_box_spinner"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_16dp_margin"
             android:entries="@array/no_1_to_50"
-            app:layout_constraintStart_toStartOf="@+id/spinner"
-            app:layout_constraintTop_toBottomOf="@+id/spinner" />
+            app:layout_constraintStart_toStartOf="@+id/trademark_spinner"
+            app:layout_constraintTop_toBottomOf="@+id/trademark_spinner" />
 
         <Spinner
-            android:id="@+id/spinner3"
+            android:id="@+id/box_type_spinner"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            app:layout_constraintEnd_toEndOf="@+id/spinner"
+            app:layout_constraintEnd_toEndOf="@+id/trademark_spinner"
             android:entries="@array/transportation_mode"
-            app:layout_constraintStart_toEndOf="@+id/spinner2"
-            app:layout_constraintTop_toTopOf="@+id/spinner2" />
+            app:layout_constraintStart_toEndOf="@+id/no_of_box_spinner"
+            app:layout_constraintTop_toTopOf="@+id/no_of_box_spinner" />
 
         <AutoCompleteTextView
-            android:id="@+id/autoCompleteTextView2"
+            android:id="@+id/ed_transport_medium"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_16dp_margin"
-            android:text="AutoCompleteTextView"
-            app:layout_constraintEnd_toEndOf="@+id/spinner3"
-            app:layout_constraintStart_toStartOf="@+id/spinner2"
-            app:layout_constraintTop_toBottomOf="@+id/spinner2" />
+            app:layout_constraintEnd_toEndOf="@+id/box_type_spinner"
+            app:layout_constraintStart_toStartOf="@+id/no_of_box_spinner"
+            app:layout_constraintTop_toBottomOf="@+id/no_of_box_spinner" />
 
         <EditText
-            android:id="@+id/editTextTextMultiLine"
+            android:id="@+id/ed_transport_detail"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:ems="10"
             android:gravity="start|top"
             android:inputType="textMultiLine"
-            app:layout_constraintEnd_toEndOf="@+id/autoCompleteTextView2"
-            app:layout_constraintStart_toStartOf="@+id/autoCompleteTextView2"
-            app:layout_constraintTop_toBottomOf="@+id/autoCompleteTextView2" />
+            app:layout_constraintEnd_toEndOf="@+id/ed_transport_medium"
+            app:layout_constraintStart_toStartOf="@+id/ed_transport_medium"
+            app:layout_constraintTop_toBottomOf="@+id/ed_transport_medium" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/proceed_with_header_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_32dp_margin"

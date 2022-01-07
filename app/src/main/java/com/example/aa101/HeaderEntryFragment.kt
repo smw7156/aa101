@@ -1,23 +1,22 @@
 package com.example.aa101
 
+import android.app.DatePickerDialog
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.example.aa101.databinding.FragmentHeaderEntryBinding
+import java.util.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
+private const val TAG = "HeaderEntryFragment"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [HeaderEntryFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+
 class HeaderEntryFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
@@ -39,8 +38,74 @@ class HeaderEntryFragment : Fragment() {
         // Inflate the layout for this fragment
 
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_header_entry,container,false)
-        return inflater.inflate(R.layout.fragment_header_entry, container, false)
+        return binding.root
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        Log.i(TAG, "onViewCreated called")
+        binding.edReceivedDate.setOnFocusChangeListener { v, hasFocus ->
+            when (hasFocus) {
+                true ->{
+                    showDatePickerDialog(v)
+                }
+
+                false ->{}
+            }
+        }
+
+        binding.edSalesDate.setOnFocusChangeListener { v, hasFocus ->
+            when (hasFocus) {
+                true ->{
+                    showDatePickerDialog(v)
+                }
+
+                false ->{}
+            }
+        }
+    }
+
+    fun showDatePickerDialog(v: View?) {
+
+        val cal = Calendar.getInstance()
+        val thisYear = cal.get(Calendar.YEAR)
+        val thisMonth = cal.get(Calendar.MONTH)
+        val thisDay = cal.get(Calendar.DAY_OF_MONTH)
+
+        Log.i(TAG,"year is $thisYear, month is $thisMonth, day is $thisDay")
+        val datePickerDialog = DatePickerDialog(requireContext(), {
+                view, year, month, dayOfMonth ->
+            when (view) {
+                binding.edReceivedDate -> {
+                    Log.i(TAG, "view on date listener is edReceivedDate")
+                }
+                binding.edSalesDate -> {
+                    Log.i(TAG, "view on date listener is edSalesDate")
+                }
+            }
+            when (v) {
+                binding.edReceivedDate -> {
+                    val dateText = "$dayOfMonth-$month-$year"
+                    binding.edReceivedDate.setText(dateText)
+                }
+                binding.edSalesDate -> {
+                    val dateText = "$dayOfMonth-$month-$year"
+                    binding.edSalesDate.setText(dateText)
+                }
+            }
+            v?.clearFocus()
+
+        },
+        thisYear,
+        thisMonth,
+        thisDay);
+
+        datePickerDialog.show()
+
+        /* After setting date in respective field pass focus to next field*/
+    }
+
 
     companion object {
         /**
