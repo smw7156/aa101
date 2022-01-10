@@ -3,12 +3,12 @@ package com.example.aa101
 import android.app.DatePickerDialog
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import com.example.aa101.data.room.SalesDatabase
 import com.example.aa101.databinding.FragmentHeaderEntryBinding
 import java.util.*
 
@@ -37,7 +37,8 @@ class HeaderEntryFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
 
-        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_header_entry,container,false)
+        binding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_header_entry, container, false)
         return binding.root
     }
 
@@ -47,23 +48,29 @@ class HeaderEntryFragment : Fragment() {
         Log.i(TAG, "onViewCreated called")
         binding.edReceivedDate.setOnFocusChangeListener { v, hasFocus ->
             when (hasFocus) {
-                true ->{
+                true -> {
                     showDatePickerDialog(v)
                 }
 
-                false ->{}
+                false -> {}
             }
         }
 
         binding.edSalesDate.setOnFocusChangeListener { v, hasFocus ->
             when (hasFocus) {
-                true ->{
+                true -> {
                     showDatePickerDialog(v)
                 }
 
-                false ->{}
+                false -> {}
             }
         }
+        initDao()
+    }
+
+    private fun initDao() {
+        val salesHeaderDao =
+            SalesDatabase.getRoomDBInstance(requireContext().applicationContext).salesHeaderDao()
     }
 
     private fun showDatePickerDialog(v: View?) {
@@ -73,33 +80,34 @@ class HeaderEntryFragment : Fragment() {
         val thisMonth = cal.get(Calendar.MONTH)
         val thisDay = cal.get(Calendar.DAY_OF_MONTH)
 
-        Log.i(TAG,"year is $thisYear, month is $thisMonth, day is $thisDay")
-        val datePickerDialog = DatePickerDialog(requireContext(), {
-                view, year, month, dayOfMonth ->
-            when (view) {
-                binding.edReceivedDate -> {
-                    Log.i(TAG, "view on date listener is edReceivedDate")
+        Log.i(TAG, "year is $thisYear, month is $thisMonth, day is $thisDay")
+        val datePickerDialog = DatePickerDialog(
+            requireContext(), { view, year, month, dayOfMonth ->
+                when (view) {
+                    binding.edReceivedDate -> {
+                        Log.i(TAG, "view on date listener is edReceivedDate")
+                    }
+                    binding.edSalesDate -> {
+                        Log.i(TAG, "view on date listener is edSalesDate")
+                    }
                 }
-                binding.edSalesDate -> {
-                    Log.i(TAG, "view on date listener is edSalesDate")
+                when (v) {
+                    binding.edReceivedDate -> {
+                        val dateText = "$dayOfMonth-$month-$year"
+                        binding.edReceivedDate.setText(dateText)
+                    }
+                    binding.edSalesDate -> {
+                        val dateText = "$dayOfMonth-$month-$year"
+                        binding.edSalesDate.setText(dateText)
+                    }
                 }
-            }
-            when (v) {
-                binding.edReceivedDate -> {
-                    val dateText = "$dayOfMonth-$month-$year"
-                    binding.edReceivedDate.setText(dateText)
-                }
-                binding.edSalesDate -> {
-                    val dateText = "$dayOfMonth-$month-$year"
-                    binding.edSalesDate.setText(dateText)
-                }
-            }
-            v?.clearFocus()
+                v?.clearFocus()
 
-        },
-        thisYear,
-        thisMonth,
-        thisDay);
+            },
+            thisYear,
+            thisMonth,
+            thisDay
+        );
 
         datePickerDialog.show()
 

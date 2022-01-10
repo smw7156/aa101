@@ -9,7 +9,7 @@ import com.example.aa101.data.room.converter.DateToLongConverter
 import com.example.aa101.data.room.dao.*
 import com.example.aa101.data.room.model.*
 
-@Database(entities = [SalesDatabase::class,SalesHeaders::class,Suppliers::class,Customers::class,
+@Database(entities = [SalesDetail::class,SalesHeaders::class,Suppliers::class,Customers::class,
                         CreditPayments::class, DebitPayments::class], version = 1, exportSchema = false)
 @TypeConverters(value = [DateToLongConverter::class])
 abstract class SalesDatabase: RoomDatabase() {
