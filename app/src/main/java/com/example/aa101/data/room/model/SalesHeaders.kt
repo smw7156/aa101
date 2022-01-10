@@ -4,6 +4,10 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.ForeignKey.CASCADE
 import androidx.room.ForeignKey.NO_ACTION
+import androidx.room.TypeConverter
+import androidx.room.TypeConverters
+import com.example.aa101.data.room.converter.DateToLongConverter
+import java.util.*
 
 @Entity(tableName = "SalesHeaders",
         foreignKeys = [ForeignKey(
@@ -16,8 +20,10 @@ import androidx.room.ForeignKey.NO_ACTION
 )
 data class SalesHeaders(
     val id: Int,
-    val dateOfReceived: String,
-    val dateOfSale: String,
+    @TypeConverters(value = [DateToLongConverter::class])
+    val dateOfReceived: Date,
+    @TypeConverters(value = [DateToLongConverter::class])
+    val dateOfSale: Date,
     val partyTradeMark: String,
     val noOfBoxs: Int,
     val transportMedium: String,
