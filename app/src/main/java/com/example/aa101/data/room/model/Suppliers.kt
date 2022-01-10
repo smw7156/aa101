@@ -8,7 +8,7 @@ data class Suppliers(
     @PrimaryKey(autoGenerate = false)
     val supplierTradeMark: String,
     val supplierName: String,
-    val supplierMobileNo: String,
-    val supplierAddress: String,
-    val supplierEmail: String,
+    val supplierMobileNo: String?,
+    val supplierAddress: String?,
+    val supplierEmail: String?,
 )
