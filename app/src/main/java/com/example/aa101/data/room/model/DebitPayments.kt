@@ -1,4 +1,4 @@
-package com.example.aa101.data.model
+package com.example.aa101.data.room.model
 
 import androidx.room.Entity
 import androidx.room.ForeignKey
@@ -6,7 +6,7 @@ import androidx.room.ForeignKey.CASCADE
 import androidx.room.ForeignKey.NO_ACTION
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
-import com.example.aa101.data.converter.DateToLongConverter
+import com.example.aa101.data.room.converter.DateToLongConverter
 import java.util.*
 
 @Entity(tableName = "DebitPayments",

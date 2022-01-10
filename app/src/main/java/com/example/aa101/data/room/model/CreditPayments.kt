@@ -1,7 +1,7 @@
-package com.example.aa101.data.model
+package com.example.aa101.data.room.model
 
 import androidx.room.*
-import com.example.aa101.data.converter.DateToLongConverter
+import com.example.aa101.data.room.converter.DateToLongConverter
 import java.util.*
 
 @Entity(tableName = "CreditPayments",

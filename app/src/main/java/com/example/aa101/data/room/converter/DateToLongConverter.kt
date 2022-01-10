@@ -1,4 +1,4 @@
-package com.example.aa101.data.converter
+package com.example.aa101.data.room.converter
 
 import androidx.room.TypeConverter
 import java.time.DateTimeException
