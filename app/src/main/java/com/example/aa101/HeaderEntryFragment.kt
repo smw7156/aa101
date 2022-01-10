@@ -66,7 +66,7 @@ class HeaderEntryFragment : Fragment() {
         }
     }
 
-    fun showDatePickerDialog(v: View?) {
+    private fun showDatePickerDialog(v: View?) {
 
         val cal = Calendar.getInstance()
         val thisYear = cal.get(Calendar.YEAR)
