@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="sales_entry_data_height">30dp</dimen>
+    <dimen name="_4dp_margin">4dp</dimen>
+    <dimen name="_8dp_margin">8dp</dimen>
     <dimen name="_16dp_margin">16dp</dimen>
     <dimen name="_32dp_margin">32dp</dimen>
+    <dimen name="space_bw_sales_data_block">@dimen/_8dp_margin</dimen>
+    <dimen name="space_bw_new_sales_data_block">@dimen/_16dp_margin</dimen>
 </resources>

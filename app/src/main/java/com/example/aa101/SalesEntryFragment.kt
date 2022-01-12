@@ -1,6 +1,5 @@
 package com.example.aa101
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.databinding.DataBindingUtil
 import com.example.aa101.databinding.FragmentSalesEntryBinding
+import com.example.aa101.databinding.FragmentSalesEntryNewBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -25,7 +25,7 @@ class SalesEntryFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
-    private lateinit var binding: FragmentSalesEntryBinding
+    private lateinit var binding: FragmentSalesEntryNewBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +40,7 @@ class SalesEntryFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_sales_entry,container,false)
+        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_sales_entry_new,container,false)
         return binding.root
     }
 
@@ -48,9 +48,9 @@ class SalesEntryFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         /**
          * Sample to how to use autocomplete textView setting adapter. Doesn't work through xml */
-        val countries: Array<out String> = resources.getStringArray(R.array.sample_autocomplete_text_list)
-        val adapter: ArrayAdapter<String> = ArrayAdapter<String>(requireContext(),android.R.layout.simple_list_item_1,countries)
-        binding.autoCompleteTextView.setAdapter(adapter)
+//        val countries: Array<out String> = resources.getStringArray(R.array.sample_autocomplete_text_list)
+//        val adapter: ArrayAdapter<String> = ArrayAdapter<String>(requireContext(),android.R.layout.simple_list_item_1,countries)
+//        binding.autoCompleteTextView.setAdapter(adapter)
 
     }
 
