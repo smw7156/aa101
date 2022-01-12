@@ -7,4 +7,5 @@
     <dimen name="_32dp_margin">32dp</dimen>
     <dimen name="space_bw_sales_data_block">@dimen/_8dp_margin</dimen>
     <dimen name="space_bw_new_sales_data_block">@dimen/_16dp_margin</dimen>
+    <dimen name="material_t_i_l_height">60dp</dimen>
 </resources>

@@ -46,24 +46,12 @@ class HeaderEntryFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         Log.i(TAG, "onViewCreated called")
-        binding.edReceivedDate.setOnFocusChangeListener { v, hasFocus ->
-            when (hasFocus) {
-                true -> {
-                    showDatePickerDialog(v)
-                }
-
-                false -> {}
-            }
+        binding.tilReceivedDate.setEndIconOnClickListener { v ->
+            showDatePickerDialog(binding.tilReceivedDate)
         }
 
-        binding.edSalesDate.setOnFocusChangeListener { v, hasFocus ->
-            when (hasFocus) {
-                true -> {
-                    showDatePickerDialog(v)
-                }
-
-                false -> {}
-            }
+        binding.tilSaleDate.setEndIconOnClickListener { v ->
+            showDatePickerDialog(binding.tilSaleDate)
         }
         initDao()
     }
@@ -83,25 +71,28 @@ class HeaderEntryFragment : Fragment() {
         Log.i(TAG, "year is $thisYear, month is $thisMonth, day is $thisDay")
         val datePickerDialog = DatePickerDialog(
             requireContext(), { view, year, month, dayOfMonth ->
-                when (view) {
-                    binding.edReceivedDate -> {
-                        Log.i(TAG, "view on date listener is edReceivedDate")
-                    }
-                    binding.edSalesDate -> {
-                        Log.i(TAG, "view on date listener is edSalesDate")
-                    }
-                }
+//                when (view) {
+//                    binding.edReceivedDate -> {
+//                        Log.i(TAG, "view on date listener is edReceivedDate")
+//                    }
+//                    binding.edSalesDate -> {
+//                        Log.i(TAG, "view on date listener is edSalesDate")
+//                    }
+//                }
+                Log.i(TAG,"view is ${view.javaClass.name}")
                 when (v) {
-                    binding.edReceivedDate -> {
+                    binding.tilReceivedDate -> {
                         val dateText = "$dayOfMonth-$month-$year"
                         binding.edReceivedDate.setText(dateText)
+                        Log.i(TAG, "view on date listener is tilReceivedDate")
                     }
-                    binding.edSalesDate -> {
+                    binding.tilSaleDate -> {
                         val dateText = "$dayOfMonth-$month-$year"
                         binding.edSalesDate.setText(dateText)
+                        Log.i(TAG, "view on date listener is tilSaleDate")
                     }
                 }
-                v?.clearFocus()
+//                v?.clearFocus()
 
             },
             thisYear,

@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
 
         //SalesEntryFragment.newInstance("myHeader", "myBody") , HeaderEntryFragment.newInstance("myHeader", "myBody")
         supportFragmentManager.beginTransaction()
-            .add(R.id.main_frag_container,SalesEntryFragment.newInstance("myHeader", "myBody"))
+            .add(R.id.main_frag_container,HeaderEntryFragment.newInstance("myHeader", "myBody"))
             .commit()
     }
 

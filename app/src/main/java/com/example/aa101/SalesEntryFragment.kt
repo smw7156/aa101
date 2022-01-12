@@ -1,13 +1,11 @@
 package com.example.aa101
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import androidx.databinding.DataBindingUtil
-import com.example.aa101.databinding.FragmentSalesEntryBinding
+import androidx.fragment.app.Fragment
 import com.example.aa101.databinding.FragmentSalesEntryNewBinding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -40,7 +38,8 @@ class SalesEntryFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_sales_entry_new,container,false)
+        binding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_sales_entry_new, container, false)
         return binding.root
     }
 

@@ -2,4 +2,17 @@
     <string name="app_name">AA101</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="perKilogram">/Kg</string>
+    <string name="Kilogram_unit">Kg</string>
+    <string name="rupee_symbol">\u20B9</string>
+    <string name="received_date">Received Date</string>
+    <string name="content_desc_open_calendar">Open Calendar</string>
+    <string name="sales_date">Sales Date</string>
+    <string name="choose_party_trademark">Choose party</string>
+    <string name="customer_name">Customer Name</string>
+    <string name="boxes_count">No. of Boxes</string>
+    <string name="boxes_type">Type of Boxes</string>
+    <string name="transport_medium">Transport Medium</string>
+    <string name="transport_detail_optional">Transport Detail (Optional)</string>
+    <string name="proceed">Proceed</string>
 </resources>
