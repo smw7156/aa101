@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.example.aa101.data.room.SalesDatabase
 import com.example.aa101.databinding.FragmentHeaderEntryBinding
+import com.example.aa101.util.getShortMonthNameFromMonthNumber
 import java.util.*
 
 private const val ARG_PARAM1 = "param1"
@@ -61,6 +62,9 @@ class HeaderEntryFragment : Fragment() {
             SalesDatabase.getRoomDBInstance(requireContext().applicationContext).salesHeaderDao()
     }
 
+    /**
+     * @param v : the view that need to affected by the date selection
+     */
     private fun showDatePickerDialog(v: View?) {
 
         val cal = Calendar.getInstance()
@@ -71,28 +75,19 @@ class HeaderEntryFragment : Fragment() {
         Log.i(TAG, "year is $thisYear, month is $thisMonth, day is $thisDay")
         val datePickerDialog = DatePickerDialog(
             requireContext(), { view, year, month, dayOfMonth ->
-//                when (view) {
-//                    binding.edReceivedDate -> {
-//                        Log.i(TAG, "view on date listener is edReceivedDate")
-//                    }
-//                    binding.edSalesDate -> {
-//                        Log.i(TAG, "view on date listener is edSalesDate")
-//                    }
-//                }
-                Log.i(TAG,"view is ${view.javaClass.name}")
+                val mon = getShortMonthNameFromMonthNumber(month)
                 when (v) {
                     binding.tilReceivedDate -> {
-                        val dateText = "$dayOfMonth-$month-$year"
+                        val dateText = "$dayOfMonth-$mon-$year"
                         binding.edReceivedDate.setText(dateText)
                         Log.i(TAG, "view on date listener is tilReceivedDate")
                     }
                     binding.tilSaleDate -> {
-                        val dateText = "$dayOfMonth-$month-$year"
+                        val dateText = "$dayOfMonth-$mon-$year"
                         binding.edSalesDate.setText(dateText)
                         Log.i(TAG, "view on date listener is tilSaleDate")
                     }
                 }
-//                v?.clearFocus()
 
             },
             thisYear,
