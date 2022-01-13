@@ -15,4 +15,12 @@
     <string name="transport_medium">Transport Medium</string>
     <string name="transport_detail_optional">Transport Detail (Optional)</string>
     <string name="proceed">Proceed</string>
+    <string name="customer_initial">Customer Initial</string>
+    <string name="email_id">Email id</string>
+    <string name="address">Address</string>
+    <string name="add_supplier">Add Supplier</string>
+    <string name="mob_no">Mob No.</string>
+    <string name="supplier_trademark">Supplier Trademark</string>
+    <string name="supplier_name">Supplier Name</string>
+    <string name="add_customer">Add Customer</string>
 </resources>

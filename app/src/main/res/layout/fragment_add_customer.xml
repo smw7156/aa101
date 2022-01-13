@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddCustomerFragment">
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_supplier_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_marginStart="@dimen/space_bw_new_sales_data_block"
+        android:layout_marginTop="@dimen/space_bw_new_sales_data_block"
+        android:layout_marginEnd="@dimen/space_bw_new_sales_data_block"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:hint="@string/customer_name">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tied_supplier_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textCapWords" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_supplier_trademark"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_bw_new_sales_data_block"
+        android:hint="@string/customer_initial"
+        app:layout_constraintEnd_toEndOf="@+id/til_supplier_name"
+        app:layout_constraintStart_toStartOf="@+id/til_supplier_name"
+        app:layout_constraintTop_toBottomOf="@+id/til_supplier_name">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tied_supplier_trademark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_supplier_phone_no"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_marginTop="@dimen/space_bw_new_sales_data_block"
+        android:hint="@string/mob_no"
+        app:layout_constraintEnd_toEndOf="@+id/til_supplier_trademark"
+        app:layout_constraintStart_toStartOf="@+id/til_supplier_trademark"
+        app:layout_constraintTop_toBottomOf="@+id/til_supplier_trademark">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tied_supplier_phone_no"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="phone" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_supplier_email"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_marginTop="@dimen/space_bw_new_sales_data_block"
+        android:hint="@string/email_id"
+        app:layout_constraintEnd_toEndOf="@+id/til_supplier_phone_no"
+        app:layout_constraintStart_toStartOf="@+id/til_supplier_phone_no"
+        app:layout_constraintTop_toBottomOf="@+id/til_supplier_phone_no">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tied_supplier_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_supplier_address"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_marginTop="@dimen/space_bw_new_sales_data_block"
+        android:hint="@string/address"
+        app:layout_constraintEnd_toEndOf="@+id/til_supplier_email"
+        app:layout_constraintStart_toStartOf="@+id/til_supplier_email"
+        app:layout_constraintTop_toBottomOf="@+id/til_supplier_email">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tied_supplier_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_bw_new_sales_data_block"
+        android:layout_marginEnd="@dimen/space_bw_new_sales_data_block"
+        android:layout_marginBottom="@dimen/_32dp_margin"
+        android:text="@string/add_customer"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
