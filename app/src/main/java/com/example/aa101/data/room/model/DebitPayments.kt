@@ -9,14 +9,16 @@ import androidx.room.TypeConverters
 import com.example.aa101.data.room.converter.DateToLongConverter
 import java.util.*
 
-@Entity(tableName = "DebitPayments",
-        foreignKeys = [ForeignKey(
-            entity = Suppliers::class,
-            parentColumns = ["supplierTradeMark"],
-            childColumns = ["beneficiary"],
-            onDelete = NO_ACTION,
-            onUpdate = CASCADE,
-        )])
+@Entity(
+    tableName = "DebitPayments",
+    foreignKeys = [ForeignKey(
+        entity = Suppliers::class,
+        parentColumns = ["supplierTradeMark"],
+        childColumns = ["beneficiary"],
+        onDelete = NO_ACTION,
+        onUpdate = CASCADE,
+    )]
+)
 data class DebitPayments(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
