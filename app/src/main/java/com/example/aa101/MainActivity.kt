@@ -1,7 +1,7 @@
 package com.example.aa101
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -13,9 +13,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun setFragment() {
 
-        //SalesEntryFragment.newInstance("myHeader", "myBody") , HeaderEntryFragment.newInstance("myHeader", "myBody")
+        //SalesEntryFragment.newInstance("myHeader", "myBody") , HeaderEntryFragment.newInstance("myHeader", "myBody"), RecordPaymentFragment.newInstance("myHeader", "myBody")
         supportFragmentManager.beginTransaction()
-            .add(R.id.main_frag_container,HeaderEntryFragment.newInstance("myHeader", "myBody"))
+            .add(R.id.main_frag_container,RecordPaymentFragment.newInstance("myHeader", "myBody"))
             .commit()
     }
 
