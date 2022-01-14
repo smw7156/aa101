@@ -26,4 +26,14 @@
     <string name="debit">Debit</string>
     <string name="payment_detail">Payment Detail</string>
     <string name="record_payment">Record Payment</string>
+    <string name="view_customer_balances">View Customer Balances</string>
+    <string name="view_party_balances">View Party Balances</string>
+    <string name="view_expenses">View Expenses</string>
+    <string name="view_sales">View Sales</string>
+    <string name="add_supplier">Add Supplier</string>
+    <string name="add_customer">Add Customer</string>
+    <string name="record_expense">Record Expense</string>
+    <string name="new_sales_entry">New Sales Entry</string>
+    <string name="choose_your_action">Choose your Action</string>
+    <string name="welcome_to_aa_data_entry_app">Welcome to AA data entry app.</string>
 </resources>

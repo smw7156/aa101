@@ -13,9 +13,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun setFragment() {
 
-        //SalesEntryFragment.newInstance("myHeader", "myBody") , HeaderEntryFragment.newInstance("myHeader", "myBody"), RecordPaymentFragment.newInstance("myHeader", "myBody")
+        //SalesEntryFragment.newInstance("myHeader", "myBody"),
+        //HeaderEntryFragment.newInstance("myHeader", "myBody"),
+        //RecordPaymentFragment.newInstance("myHeader", "myBody"),
         supportFragmentManager.beginTransaction()
-            .add(R.id.main_frag_container,RecordPaymentFragment.newInstance("myHeader", "myBody"))
+            .replace(R.id.main_frag_container,RecordPaymentFragment.newInstance("myHeader", "myBody"))
             .commit()
     }
 

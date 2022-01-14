@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".HomeFragment">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_bw_new_sales_data_block"
+            android:layout_marginTop="64dp"
+            android:layout_marginEnd="@dimen/space_bw_new_sales_data_block"
+            android:gravity="center"
+            android:text="@string/welcome_to_aa_data_entry_app"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textColor="@color/text_main"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_choose_action"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_32dp_margin"
+            android:text="@string/choose_your_action"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_32dp_margin"
+            android:layout_marginStart="@dimen/space_bw_new_sales_data_block"
+            android:layout_marginEnd="@dimen/space_bw_new_sales_data_block"
+            app:layout_constraintTop_toBottomOf="@id/tv_choose_action"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="@dimen/_16dp_margin"
+                android:weightSum="1">
+
+                <Button
+                    android:id="@+id/btn_add_sales"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/new_sales_entry"
+                    android:layout_marginStart="@dimen/space_bw_sales_data_block"
+                    android:layout_marginEnd="@dimen/space_bw_sales_data_block"
+                    android:layout_weight="0.5" />
+
+                <Button
+                    android:id="@+id/btn_add_expense"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/record_expense"
+                    android:layout_weight="0.5"
+                    android:layout_marginStart="@dimen/space_bw_sales_data_block"
+                    android:layout_marginEnd="@dimen/space_bw_sales_data_block"
+                    tools:layout_editor_absoluteX="224dp"
+                    tools:layout_editor_absoluteY="265dp" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="@dimen/_16dp_margin"
+                android:weightSum="1">
+
+                <Button
+                    android:id="@+id/btn_add_customer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/add_customer"
+                    android:layout_marginStart="@dimen/space_bw_sales_data_block"
+                    android:layout_marginEnd="@dimen/space_bw_sales_data_block"
+                    android:layout_weight="0.5"
+                    tools:layout_editor_absoluteX="45dp"
+                    tools:layout_editor_absoluteY="265dp" />
+
+                <Button
+                    android:id="@+id/btn_add_supplier"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/add_supplier"
+                    android:layout_weight="0.5"
+                    android:layout_marginStart="@dimen/space_bw_sales_data_block"
+                    android:layout_marginEnd="@dimen/space_bw_sales_data_block"
+                    tools:layout_editor_absoluteX="224dp"
+                    tools:layout_editor_absoluteY="265dp" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="@dimen/_16dp_margin"
+                android:weightSum="1">
+
+                <Button
+                    android:id="@+id/btn_view_sales"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/view_sales"
+                    android:layout_marginStart="@dimen/space_bw_sales_data_block"
+                    android:layout_marginEnd="@dimen/space_bw_sales_data_block"
+                    android:layout_weight="0.5"
+                    tools:layout_editor_absoluteX="45dp"
+                    tools:layout_editor_absoluteY="265dp" />
+
+                <Button
+                    android:id="@+id/btn_view_expense"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/view_expenses"
+                    android:layout_weight="0.5"
+                    android:layout_marginStart="@dimen/space_bw_sales_data_block"
+                    android:layout_marginEnd="@dimen/space_bw_sales_data_block"
+                    tools:layout_editor_absoluteX="224dp"
+                    tools:layout_editor_absoluteY="265dp" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="@dimen/_16dp_margin"
+                android:weightSum="1">
+
+                <Button
+                    android:id="@+id/btn_view_party_balance"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/view_party_balances"
+                    android:layout_marginStart="@dimen/space_bw_sales_data_block"
+                    android:layout_marginEnd="@dimen/space_bw_sales_data_block"
+                    android:layout_weight="0.5"
+                    tools:layout_editor_absoluteX="45dp"
+                    tools:layout_editor_absoluteY="265dp" />
+
+                <Button
+                    android:id="@+id/btn_view_customer_balance"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/view_customer_balances"
+                    android:layout_weight="0.5"
+                    android:layout_marginStart="@dimen/space_bw_sales_data_block"
+                    android:layout_marginEnd="@dimen/space_bw_sales_data_block"
+                    tools:layout_editor_absoluteX="224dp"
+                    tools:layout_editor_absoluteY="265dp" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -30,6 +30,7 @@ class RecordPaymentFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+
     private lateinit var binding: FragmentRecordPaymentBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,12 +58,10 @@ class RecordPaymentFragment : Fragment() {
                     0 -> {
                         Log.i(TAG,"credit tab selected")
                         onCreditTabSelected()
-//                        binding.tvPageTitle.text = "Record a Credit Payment"
                     }
                     1 -> {
                         Log.i(TAG,"debit tab selected")
                         onDebitTabSelected()
-//                        binding.tvPageTitle.text = "Record a Debit Payment"
                     }
                 }
             }
@@ -74,12 +73,10 @@ class RecordPaymentFragment : Fragment() {
                     0 -> {
                         Log.i(TAG,"onTabReselected: credit tab selected")
                         onCreditTabSelected()
-//                        binding.tvPageTitle.text = "Record a Credit Payment"
                     }
                     1 -> {
                         Log.i(TAG,"onTabReselected: debit tab selected")
                         onDebitTabSelected()
-//                        binding.tvPageTitle.text = "Record a Debit Payment"
                     }
                 }
             }
@@ -88,7 +85,6 @@ class RecordPaymentFragment : Fragment() {
         GlobalScope.async (Dispatchers.Main) {
             delay(500L)
             onCreditTabSelected()
-//            binding.tblayoutCreditDebit.selectTab(binding.tblayoutCreditDebit.getTabAt(0), true)
         }
     }
 
