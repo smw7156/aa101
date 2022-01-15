@@ -59,7 +59,7 @@
                 <Button
                     android:id="@+id/btn_add_sales"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:text="@string/new_sales_entry"
                     android:layout_marginStart="@dimen/space_bw_sales_data_block"
                     android:layout_marginEnd="@dimen/space_bw_sales_data_block"
@@ -68,7 +68,7 @@
                 <Button
                     android:id="@+id/btn_add_expense"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:text="@string/record_expense"
                     android:layout_weight="0.5"
                     android:layout_marginStart="@dimen/space_bw_sales_data_block"
@@ -88,7 +88,7 @@
                 <Button
                     android:id="@+id/btn_add_customer"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:text="@string/add_customer"
                     android:layout_marginStart="@dimen/space_bw_sales_data_block"
                     android:layout_marginEnd="@dimen/space_bw_sales_data_block"
@@ -99,7 +99,7 @@
                 <Button
                     android:id="@+id/btn_add_supplier"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:text="@string/add_supplier"
                     android:layout_weight="0.5"
                     android:layout_marginStart="@dimen/space_bw_sales_data_block"
@@ -119,7 +119,7 @@
                 <Button
                     android:id="@+id/btn_view_sales"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:text="@string/view_sales"
                     android:layout_marginStart="@dimen/space_bw_sales_data_block"
                     android:layout_marginEnd="@dimen/space_bw_sales_data_block"
@@ -130,7 +130,7 @@
                 <Button
                     android:id="@+id/btn_view_expense"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:text="@string/view_expenses"
                     android:layout_weight="0.5"
                     android:layout_marginStart="@dimen/space_bw_sales_data_block"
@@ -150,7 +150,7 @@
                 <Button
                     android:id="@+id/btn_view_party_balance"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:text="@string/view_party_balances"
                     android:layout_marginStart="@dimen/space_bw_sales_data_block"
                     android:layout_marginEnd="@dimen/space_bw_sales_data_block"
@@ -161,7 +161,7 @@
                 <Button
                     android:id="@+id/btn_view_customer_balance"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:text="@string/view_customer_balances"
                     android:layout_weight="0.5"
                     android:layout_marginStart="@dimen/space_bw_sales_data_block"

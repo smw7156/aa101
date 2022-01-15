@@ -16,8 +16,9 @@ class MainActivity : AppCompatActivity() {
         //SalesEntryFragment.newInstance("myHeader", "myBody"),
         //HeaderEntryFragment.newInstance("myHeader", "myBody"),
         //RecordPaymentFragment.newInstance("myHeader", "myBody"),
+        //HomeFragment.newInstance("myHeader", "myBody")
         supportFragmentManager.beginTransaction()
-            .replace(R.id.main_frag_container,RecordPaymentFragment.newInstance("myHeader", "myBody"))
+            .replace(R.id.main_frag_container,HomeFragment.newInstance("myHeader", "myBody"))
             .commit()
     }
 

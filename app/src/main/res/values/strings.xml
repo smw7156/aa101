@@ -30,8 +30,6 @@
     <string name="view_party_balances">View Party Balances</string>
     <string name="view_expenses">View Expenses</string>
     <string name="view_sales">View Sales</string>
-    <string name="add_supplier">Add Supplier</string>
-    <string name="add_customer">Add Customer</string>
     <string name="record_expense">Record Expense</string>
     <string name="new_sales_entry">New Sales Entry</string>
     <string name="choose_your_action">Choose your Action</string>
