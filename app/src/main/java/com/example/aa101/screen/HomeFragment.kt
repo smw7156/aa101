@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import com.example.aa101.R
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import com.example.aa101.databinding.FragmentHomeBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -21,6 +23,7 @@ class HomeFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private lateinit var binding: FragmentHomeBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +38,80 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.btnAddCustomer.setOnClickListener {
+            onAddCustomerClicked()
+        }
+
+        binding.btnAddExpense.setOnClickListener {
+            onAddNewExpenseClicked()
+        }
+
+        binding.btnAddSales.setOnClickListener {
+            onAddNewSalesEntryClicked()
+        }
+
+        binding.btnAddSupplier.setOnClickListener {
+            onAddSupplierClicked()
+        }
+
+        binding.btnViewSales.setOnClickListener {
+            onViewSalesClicked()
+        }
+
+        binding.btnViewExpense.setOnClickListener {
+            onViewExpenseClicked()
+        }
+
+        binding.btnViewCustomerBalance.setOnClickListener {
+            onViewCustomerBalanceClicked()
+        }
+
+        binding.btnViewPartyBalance.setOnClickListener {
+            onViewPartyBalanceClicked()
+        }
+    }
+
+    fun onAddNewSalesEntryClicked() {
+
+    }
+
+    fun onAddNewExpenseClicked() {
+
+    }
+
+    fun onAddCustomerClicked() {
+
+    }
+
+    fun onAddSupplierClicked() {
+
+    }
+
+    fun onViewSalesClicked() {
+
+    }
+
+    fun onViewExpenseClicked() {
+
+    }
+
+    fun onViewPartyBalanceClicked() {
+
+    }
+
+    fun onViewCustomerBalanceClicked() {
+
+    }
+
+    fun goToScreen(newFragment: Fragment) {
+        requireActivity().supportFragmentManager.beginTransaction().replace(R.id.fragment_container_view_tag,newFragment).addToBackStack(null).commit()
     }
 
     companion object {
