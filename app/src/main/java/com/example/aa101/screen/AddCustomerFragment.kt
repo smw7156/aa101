@@ -1,8 +1,9 @@
-package com.example.aa101
+package com.example.aa101.screen
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import com.example.aa101.R
 import android.view.View
 import android.view.ViewGroup
 
@@ -13,10 +14,10 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [AddSupplierFragment.newInstance] factory method to
+ * Use the [AddCustomerFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class AddSupplierFragment : Fragment() {
+class AddCustomerFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -34,7 +35,7 @@ class AddSupplierFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_supplier, container, false)
+        return inflater.inflate(R.layout.fragment_add_customer, container, false)
     }
 
     companion object {
@@ -44,12 +45,12 @@ class AddSupplierFragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment AddSupplierFragment.
+         * @return A new instance of fragment AddCustomerFragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            AddSupplierFragment().apply {
+            AddCustomerFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

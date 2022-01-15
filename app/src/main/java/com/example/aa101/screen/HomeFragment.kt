@@ -1,9 +1,10 @@
-package com.example.aa101
+package com.example.aa101.screen
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
+import com.example.aa101.R
 import android.view.ViewGroup
 
 // TODO: Rename parameter arguments, choose names that match

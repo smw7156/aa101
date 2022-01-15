@@ -1,4 +1,4 @@
-package com.example.aa101
+package com.example.aa101.screen
 
 import android.app.DatePickerDialog
 import android.os.Bundle
@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.aa101.R
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.example.aa101.data.room.SalesDatabase
