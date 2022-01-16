@@ -1,16 +1,25 @@
 package com.example.aa101.screen
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
-import com.example.aa101.R
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.addTextChangedListener
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import com.example.aa101.R
+import com.example.aa101.databinding.FragmentAddCustomerBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
+private const val TAG = "AddCustomerFragment"
 
 /**
  * A simple [Fragment] subclass.
@@ -21,6 +30,8 @@ class AddCustomerFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private lateinit var binding: FragmentAddCustomerBinding
+    private lateinit var viewModel: AddCustomerViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +46,99 @@ class AddCustomerFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_customer, container, false)
+        binding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_add_customer, container, false)
+        viewModel = ViewModelProvider(this).get(AddCustomerViewModel::class.java)
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.tiedCustomerName.setOnFocusChangeListener { view, b ->
+            when (b) {
+                true -> {
+
+                }
+                false -> {
+                    viewModel.setCustomerName(binding.tiedCustomerName.text.toString())
+                }
+            }
+        }
+
+        binding.tiedCustomerInitial.setOnFocusChangeListener { view, b ->
+            when (b) {
+                true -> {
+
+                }
+                false -> {
+                    viewModel.setCustomerInitial(binding.tiedCustomerInitial.text.toString())
+                }
+            }
+        }
+        binding.tiedCustomerPhoneNo.setOnFocusChangeListener { view, b ->
+            when (b) {
+                true -> {
+
+                }
+                false -> {
+                    viewModel.setCustomerMobNo(binding.tiedCustomerPhoneNo.text.toString())
+                }
+            }
+        }
+        binding.tiedCustomerEmail.setOnFocusChangeListener { view, b ->
+            when (b) {
+                true -> {
+
+                }
+                false -> {
+                    viewModel.setCustomerEmail(binding.tiedCustomerEmail.text.toString())
+                }
+            }
+        }
+        binding.tiedCustomerAddress.setOnFocusChangeListener { view, b ->
+            when (b) {
+                true -> {
+
+                }
+                false -> {
+                    viewModel.setCustomerAddress(binding.tiedCustomerAddress.text.toString())
+                }
+            }
+        }
+        binding.tiedCustomerInitial.addTextChangedListener {
+            object : TextWatcher {
+                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                    TODO("Not yet implemented")
+                }
+
+                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                    TODO("Not yet implemented")
+                }
+
+                override fun afterTextChanged(p0: Editable?) {
+                    Log.i(TAG,"afterTextChanged for customerInitial: ${p0.toString()})")
+                    viewModel.checkForValidInitial(p0.toString())
+                }
+
+            }
+        }
+    }
+
+    private fun observeViewModel() {
+        viewModel.apply {
+            isCustomerInitialValid.observe(viewLifecycleOwner, Observer {
+                when (it) {
+                    true -> {
+
+                    }
+                    false -> {
+                        binding.tiedCustomerInitial.error = "Name Already taken or not valid"
+                    }
+                }
+            })
+        }
     }
 
     companion object {
