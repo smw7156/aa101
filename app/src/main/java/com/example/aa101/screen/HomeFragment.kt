@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import com.example.aa101.R
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.example.aa101.databinding.FragmentHomeBinding
 
@@ -79,39 +80,43 @@ class HomeFragment : Fragment() {
     }
 
     fun onAddNewSalesEntryClicked() {
-
+        val headerEntryFragment = HeaderEntryFragment.newInstance("param1", "param2")
+        goToScreen(headerEntryFragment)
     }
 
     fun onAddNewExpenseClicked() {
-
+        val RecordPaymentFragment = RecordPaymentFragment.newInstance("param1", "param2")
+        goToScreen(RecordPaymentFragment)
     }
 
     fun onAddCustomerClicked() {
-
+        val addCustomerFragment = AddCustomerFragment.newInstance("param1", "param2")
+        goToScreen(addCustomerFragment)
     }
 
     fun onAddSupplierClicked() {
-
+        val addSupplierFragment = AddSupplierFragment.newInstance("param1", "param2")
+        goToScreen(addSupplierFragment)
     }
 
     fun onViewSalesClicked() {
-
+        Toast.makeText(requireContext(),"To be implemented", Toast.LENGTH_LONG).show()
     }
 
     fun onViewExpenseClicked() {
-
+        Toast.makeText(requireContext(),"To be implemented", Toast.LENGTH_LONG).show()
     }
 
     fun onViewPartyBalanceClicked() {
-
+        Toast.makeText(requireContext(),"To be implemented", Toast.LENGTH_LONG).show()
     }
 
     fun onViewCustomerBalanceClicked() {
-
+        Toast.makeText(requireContext(),"To be implemented", Toast.LENGTH_LONG).show()
     }
 
     fun goToScreen(newFragment: Fragment) {
-        requireActivity().supportFragmentManager.beginTransaction().replace(R.id.fragment_container_view_tag,newFragment).addToBackStack(null).commit()
+        requireActivity().supportFragmentManager.beginTransaction().replace(R.id.main_frag_container,newFragment).addToBackStack(null).commit()
     }
 
     companion object {
