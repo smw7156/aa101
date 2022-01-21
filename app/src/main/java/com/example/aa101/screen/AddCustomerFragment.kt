@@ -49,6 +49,7 @@ class AddCustomerFragment : Fragment() {
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_add_customer, container, false)
         viewModel = ViewModelProvider(this).get(AddCustomerViewModel::class.java)
+        binding.vm = viewModel
 
         return binding.root
     }
@@ -128,13 +129,13 @@ class AddCustomerFragment : Fragment() {
 
     private fun observeViewModel() {
         viewModel.apply {
-            isCustomerInitialValid.observe(viewLifecycleOwner, Observer {
-                when (it) {
+            customerInitialErrorMessage.observe(viewLifecycleOwner, Observer {
+                when (it.isNullOrBlank()) {
                     true -> {
 
                     }
                     false -> {
-                        binding.tiedCustomerInitial.error = "Name Already taken or not valid"
+                        binding.tiedCustomerInitial.error = it
                     }
                 }
             })

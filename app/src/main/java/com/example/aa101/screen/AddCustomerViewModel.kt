@@ -21,8 +21,8 @@ class AddCustomerViewModel: ViewModel() {
     private var _customerAddress = MutableLiveData<String>()
     val customerAddress: LiveData<String> get() = _customerAddress
 
-    private var _isCustomerInitialValid = MutableLiveData<Boolean>()
-    val isCustomerInitialValid: LiveData<Boolean> get() = _isCustomerInitialValid
+    private var _customerInitialErrorMessage = MutableLiveData<String?>()
+    val customerInitialErrorMessage: LiveData<String?> get() = _customerInitialErrorMessage
 
     fun setCustomerName(customerName: String) = _customerName.postValue(customerName)
     fun setCustomerInitial(customerInitial: String) = _customerInitial.postValue(customerInitial)
@@ -31,7 +31,13 @@ class AddCustomerViewModel: ViewModel() {
     fun setCustomerAddress(customerAddress: String) = _customerAddress.postValue(customerAddress)
 
     fun checkForValidInitial(customerInitial: String) {
-        //TODO: validate customerinitial
+        //TODO: validate customerInitial
+    }
+
+    fun onAddClicked() {
+        // validate detail
+
+        // add item in LDB
     }
 
 
