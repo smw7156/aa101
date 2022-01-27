@@ -14,6 +14,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.aa101.R
 import com.example.aa101.databinding.FragmentAddCustomerBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,6 +27,7 @@ private const val TAG = "AddCustomerFragment"
  * Use the [AddCustomerFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
+@AndroidEntryPoint
 class AddCustomerFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
@@ -132,7 +134,7 @@ class AddCustomerFragment : Fragment() {
             customerInitialErrorMessage.observe(viewLifecycleOwner, Observer {
                 when (it.isNullOrBlank()) {
                     true -> {
-
+                        binding.tiedCustomerInitial.error = null
                     }
                     false -> {
                         binding.tiedCustomerInitial.error = it

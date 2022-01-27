@@ -1,9 +1,11 @@
 package com.example.aa101.data.room.model
 
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "Customers")
+@Entity(tableName = "Customers",
+        indices = [Index(value = ["customerName"])])
 data class Customers(
     @PrimaryKey(autoGenerate = false)
     val customerInitial: String,
