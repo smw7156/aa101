@@ -3,8 +3,11 @@ package com.example.aa101.screen
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class AddCustomerViewModel: ViewModel() {
+@HiltViewModel
+class AddCustomerViewModel @Inject constructor(): ViewModel() {
 
     private var _customerName = MutableLiveData<String>()
     val customerName: LiveData<String> get() = _customerName

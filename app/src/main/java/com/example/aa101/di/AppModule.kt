@@ -2,6 +2,7 @@ package com.example.aa101.di
 
 import android.content.Context
 import com.example.aa101.AAApplication
+import com.example.aa101.data.room.SalesDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,5 +24,11 @@ object AppModule {
     @Provides
     fun getRandomString(): String {
         return "NOIDFNGKRJHCGKWFNVSDFKHGIR"
+    }
+
+    @Singleton
+    @Provides
+    fun getSalesDatabase(@ApplicationContext context: Context): SalesDatabase {
+        return SalesDatabase.getRoomDBInstance(context)
     }
 }

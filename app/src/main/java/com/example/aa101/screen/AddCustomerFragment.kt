@@ -10,14 +10,13 @@ import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.example.aa101.R
 import com.example.aa101.databinding.FragmentAddCustomerBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 // TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 private const val TAG = "AddCustomerFragment"
@@ -33,7 +32,7 @@ class AddCustomerFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private lateinit var binding: FragmentAddCustomerBinding
-    private lateinit var viewModel: AddCustomerViewModel
+    val viewModel by viewModels<AddCustomerViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,9 +47,7 @@ class AddCustomerFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_add_customer, container, false)
-        viewModel = ViewModelProvider(this).get(AddCustomerViewModel::class.java)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_add_customer, container, false)
         binding.vm = viewModel
 
         return binding.root
@@ -59,7 +56,7 @@ class AddCustomerFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.tiedCustomerName.setOnFocusChangeListener { view, b ->
+        binding.tiedCustomerName.setOnFocusChangeListener { _, b ->
             when (b) {
                 true -> {
 
@@ -70,7 +67,7 @@ class AddCustomerFragment : Fragment() {
             }
         }
 
-        binding.tiedCustomerInitial.setOnFocusChangeListener { view, b ->
+        binding.tiedCustomerInitial.setOnFocusChangeListener { _, b ->
             when (b) {
                 true -> {
 
@@ -80,7 +77,7 @@ class AddCustomerFragment : Fragment() {
                 }
             }
         }
-        binding.tiedCustomerPhoneNo.setOnFocusChangeListener { view, b ->
+        binding.tiedCustomerPhoneNo.setOnFocusChangeListener { _, b ->
             when (b) {
                 true -> {
 
@@ -90,7 +87,7 @@ class AddCustomerFragment : Fragment() {
                 }
             }
         }
-        binding.tiedCustomerEmail.setOnFocusChangeListener { view, b ->
+        binding.tiedCustomerEmail.setOnFocusChangeListener { _, b ->
             when (b) {
                 true -> {
 
@@ -100,7 +97,7 @@ class AddCustomerFragment : Fragment() {
                 }
             }
         }
-        binding.tiedCustomerAddress.setOnFocusChangeListener { view, b ->
+        binding.tiedCustomerAddress.setOnFocusChangeListener { _, b ->
             when (b) {
                 true -> {
 
