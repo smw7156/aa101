@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import com.example.aa101.R
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
+import com.example.aa101.databinding.FragmentAddSupplierBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 // TODO: Rename parameter arguments, choose names that match
@@ -26,6 +28,7 @@ class AddSupplierFragment : Fragment() {
     private var param2: String? = null
 
     val viewModel by viewModels<AddSupplierViewModel>()
+    private lateinit var binding: FragmentAddSupplierBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +43,64 @@ class AddSupplierFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_supplier, container, false)
+        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_add_supplier,container,false)
+        binding.vm = viewModel
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.tiedSupplierName.setOnFocusChangeListener { v, hasFocus ->
+            when (hasFocus) {
+                true -> {}
+                false -> {
+                    if (binding.tiedSupplierName.text?.isNotEmpty() == true) {
+                        viewModel.setSupplierName(binding.tiedSupplierName.text.toString())
+                    }
+                }
+            }
+        }
+        binding.tiedSupplierTrademark.setOnFocusChangeListener { v, hasFocus ->
+            when (hasFocus) {
+                true -> {}
+                false -> {
+                    if (binding.tiedSupplierTrademark.text?.isNotEmpty() == true) {
+                        viewModel.setSupplierTradeMark(binding.tiedSupplierTrademark.text.toString())
+                    }
+                }
+            }
+        }
+        binding.tiedSupplierPhoneNo.setOnFocusChangeListener { v, hasFocus ->
+            when (hasFocus) {
+                true -> {}
+                false -> {
+                    if (binding.tiedSupplierPhoneNo.text?.isNotEmpty() == true) {
+                        viewModel.setSupplierMobile(binding.tiedSupplierPhoneNo.text.toString())
+                    }
+                }
+            }
+        }
+        binding.tiedSupplierEmail.setOnFocusChangeListener { v, hasFocus ->
+            when (hasFocus) {
+                true -> {}
+                false -> {
+                    if (binding.tiedSupplierEmail.text?.isNotEmpty() == true) {
+                        viewModel.setSupplierEmail(binding.tiedSupplierEmail.text.toString())
+                    }
+                }
+            }
+        }
+        binding.tiedSupplierAddress.setOnFocusChangeListener { v, hasFocus ->
+            when (hasFocus) {
+                true -> {}
+                false -> {
+                    if (binding.tiedSupplierAddress.text?.isNotEmpty() == true) {
+                        viewModel.setSupplierEmail(binding.tiedSupplierAddress.text.toString())
+                    }
+                }
+            }
+        }
     }
 
     companion object {

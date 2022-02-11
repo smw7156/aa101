@@ -1,5 +1,22 @@
 package com.example.aa101.data.repository.supplier
 
-interface SupplierRepository {
+import com.example.aa101.data.room.model.Suppliers
+import dagger.Binds
+import dagger.Module
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ViewModelComponent
 
+interface SupplierRepository {
+    suspend fun addSupplier(supplierData: Suppliers)
+    suspend fun updateSuppliers(updatedData: Suppliers)
+}
+
+@Module
+@InstallIn(ViewModelComponent::class)
+abstract class AddSupplierRepoModule {
+
+    @Binds
+    abstract fun bindSupplierRepository(
+        supplierRepoImpl: SupplierRepositoryImpl
+    ): SupplierRepository
 }

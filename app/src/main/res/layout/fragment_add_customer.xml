@@ -9,7 +9,6 @@
         <variable
             name="vm"
             type="com.example.aa101.screen.AddCustomerViewModel" />
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

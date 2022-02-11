@@ -4,7 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="android.view.View"/>
 
+        <variable
+            name="vm"
+            type="com.example.aa101.screen.AddSupplierViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -111,6 +115,7 @@
             android:layout_marginEnd="@dimen/space_bw_new_sales_data_block"
             android:layout_marginBottom="@dimen/_32dp_margin"
             android:text="@string/add_supplier"
+            android:onClick="@{() -> vm.onAddClicked()}"
             android:textAllCaps="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

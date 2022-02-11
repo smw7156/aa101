@@ -1,13 +1,23 @@
 package com.example.aa101.screen
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.aa101.data.room.model.Suppliers
+import com.example.aa101.useCase.SupplierUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class AddSupplierViewModel @Inject constructor(): ViewModel() {
+class AddSupplierViewModel @Inject constructor(
+    private val supplierUseCase: SupplierUseCase
+): ViewModel() {
+
+    private val TAG = "AddSupplierViewModel"
 
     private var _supplierName = MutableLiveData<String>()
     val supplierName: LiveData<String> get() = _supplierName
@@ -35,7 +45,31 @@ class AddSupplierViewModel @Inject constructor(): ViewModel() {
     }
 
     fun onAddClicked() {
+        if (_supplierName.value.isNullOrEmpty()) {
+            Log.e(TAG , "Supplier name is empty")
+        }
+        if (_partyTrademark.value.isNullOrEmpty()) {
+            Log.e(TAG , "Supplier trademark is empty")
+        }
+        if (_supplierMobNo.value.isNullOrEmpty()) {
+            Log.e(TAG , "Supplier Mob no. is empty")
+        }
+        if (_supplierEmail.value.isNullOrEmpty()) {
+            Log.e(TAG , "Supplier email is empty")
+        }
 
+        Log.i(TAG, "adding supplier in DB")
+        viewModelScope.launch(Dispatchers.IO) {
+            supplierUseCase.addSuppliers(
+                Suppliers(
+                    supplierName = _supplierName.value.toString(),
+                    supplierTradeMark = _partyTrademark.value.toString(),
+                    supplierMobileNo = _supplierMobNo.value.toString(),
+                    supplierEmail = _supplierEmail.value.toString(),
+                    supplierAddress = _supplierAddress.value.toString(),
+                )
+            )
+        }
     }
 
 }

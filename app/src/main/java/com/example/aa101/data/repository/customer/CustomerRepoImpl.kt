@@ -1,0 +1,18 @@
+package com.example.aa101.data.repository.customer
+
+import com.example.aa101.data.room.dao.CustomerDao
+import com.example.aa101.data.room.model.Customers
+import javax.inject.Inject
+
+class CustomerRepositoryImpl @Inject constructor(
+    private val customerDao: CustomerDao
+): CustomerRepository {
+
+    override suspend fun addCustomer(customerData: Customers) {
+        customerDao.addCustomer(customerData)
+    }
+
+    override suspend fun updateCustomer(updatedData: Customers) {
+        TODO("Not yet implemented")
+    }
+}
