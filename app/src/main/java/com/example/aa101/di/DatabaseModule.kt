@@ -1,6 +1,10 @@
-package com.example.aa101.data.room.dao
+package com.example.aa101.di
 
 import com.example.aa101.data.room.SalesDatabase
+import com.example.aa101.data.room.dao.CreditPaymentDao
+import com.example.aa101.data.room.dao.CustomerDao
+import com.example.aa101.data.room.dao.DebitPaymentDao
+import com.example.aa101.data.room.dao.SupplierDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

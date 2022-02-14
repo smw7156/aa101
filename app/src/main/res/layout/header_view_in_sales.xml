@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/_8dp_margin"
+        android:paddingBottom="@dimen/_8dp_margin"
+        android:background="@color/teal_700"
+        >
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_party_name"
+            tools:text="PARTY/PLACE"
+            android:textSize="24sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="@dimen/_16dp_margin" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/ll_dates"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_8dp_margin"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_party_name"
+            app:layout_constraintTop_toTopOf="parent"
+            android:gravity="end|center_vertical">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="end|center_vertical">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:text="Recv At: " />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    tools:text="22-Dec-2022" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_8dp_margin" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="end|center_vertical">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:textSize="16sp"
+                    android:text="Sold At: " />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:textSize="16sp"
+                    tools:text="23-Dec-2022" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_no_of_box"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:layout_marginTop="@dimen/_8dp_margin"
+            app:layout_constraintStart_toStartOf="@id/tv_party_name"
+            app:layout_constraintTop_toBottomOf="@id/tv_party_name"
+            tools:text="100" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_type_of_box"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:layout_marginStart="@dimen/_8dp_margin"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv_no_of_box"
+            app:layout_constraintStart_toEndOf="@id/tv_no_of_box"
+            tools:text="TC Box" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_transport_medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:layout_marginTop="@dimen/_8dp_margin"
+            app:layout_constraintStart_toStartOf="@id/tv_no_of_box"
+            app:layout_constraintTop_toBottomOf="@id/tv_no_of_box"
+            tools:text="By Train" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_transport_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:layout_marginStart="@dimen/_8dp_margin"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv_transport_medium"
+            app:layout_constraintStart_toEndOf="@id/tv_party_name"
+            tools:text="18006 DN" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

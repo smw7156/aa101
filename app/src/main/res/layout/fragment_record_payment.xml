@@ -5,6 +5,12 @@
 
     <data>
 
+        <import type="android.view.View"/>
+        
+        <variable
+            name="vm"
+            type="com.example.aa101.screen.RecordPaymentViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -12,13 +18,33 @@
         android:layout_height="match_parent"
         tools:context=".RecordPaymentFragment">
 
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/toolbar_payment_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/topAppBar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:title="@string/payments"
+                style="@style/Widget.MaterialComponents.Toolbar.Primary"
+                app:navigationIcon="@drawable/ic_round_white_arrow_back_24"
+                />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tblayout_credit_debit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@id/toolbar_payment_fragment">
 
             <com.google.android.material.tabs.TabItem
                 android:id="@+id/tab_credit"

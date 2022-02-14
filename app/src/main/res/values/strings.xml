@@ -34,4 +34,7 @@
     <string name="new_sales_entry">New Sales Entry</string>
     <string name="choose_your_action">Choose your Action</string>
     <string name="welcome_to_aa_data_entry_app">Welcome to AA data entry app.</string>
+    <string name="payments">Payments</string>
+    <string name="new_sales_sliip">New Sales Slip</string>
+    <string name="sales_entry">Sales Entry</string>
 </resources>

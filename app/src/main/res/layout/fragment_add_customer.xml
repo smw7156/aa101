@@ -17,6 +17,26 @@
         tools:context=".AddCustomerFragment">
 
 
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/toolbar_add_customer_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/topAppBar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:title="@string/add_customer"
+                style="@style/Widget.MaterialComponents.Toolbar.Primary"
+                app:navigationIcon="@drawable/ic_round_white_arrow_back_24"
+                />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_customer_name"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -28,7 +48,7 @@
             android:hint="@string/customer_name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@id/toolbar_add_customer_fragment">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tied_customer_name"
