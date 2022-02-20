@@ -81,6 +81,13 @@ class HeaderEntryFragment : Fragment() {
                     binding.trademarkSpinner.setAdapter(adapter)
                 }
             })
+
+            moveToSalesEntry.observe(viewLifecycleOwner, {
+                if (it == true) {
+                    val detailFragment = SalesEntryFragment.newInstance("headerId","someParam")
+                    requireActivity().supportFragmentManager.beginTransaction().replace(R.id.main_frag_container,detailFragment).addToBackStack(null).commit()
+                }
+            })
         }
     }
 

@@ -34,6 +34,9 @@ class SalesViewModel @Inject constructor(
     private var _customer = MutableLiveData<String>()
     val customer: LiveData<String> get() = _customer
 
+    private var _moveToSalesEntry = MutableLiveData<Boolean>(false)
+    val moveToSalesEntry : LiveData<Boolean> get() = _moveToSalesEntry
+
     fun getSupplierTMList() {
         viewModelScope.launch(Dispatchers.IO) {
             _supplierList.postValue(supplierUseCase.getTMOfSuppliers())
@@ -52,7 +55,7 @@ class SalesViewModel @Inject constructor(
     }
 
     private fun validateFieldsAndProceed() {
-
+        _moveToSalesEntry.postValue(true)
     }
 
 }
