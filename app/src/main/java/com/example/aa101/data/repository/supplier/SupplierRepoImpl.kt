@@ -15,4 +15,9 @@ class SupplierRepositoryImpl @Inject constructor(
     override suspend fun updateSuppliers(updatedData: Suppliers) {
         TODO("Not yet implemented")
     }
+
+    override suspend fun supplierTMList(): Set<String> {
+//        val supplierList = supplierDao.getSupplierTradeMarks()
+        return supplierDao.getSupplierTradeMarks().toSet()
+    }
 }

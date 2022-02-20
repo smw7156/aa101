@@ -12,4 +12,8 @@ class CustomerUseCase @Inject constructor(
     suspend fun addCustomer(customer: Customers) {
         customerRepo.addCustomer(customer)
     }
+
+    suspend fun getInitialsOfCustomer(): Set<String> {
+        return customerRepo.getCustomersInitials()
+    }
 }

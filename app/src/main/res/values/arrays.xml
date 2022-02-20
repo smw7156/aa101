@@ -73,4 +73,11 @@
         <item>Airplane</item>
         <item>Ship</item>
     </string-array>
+
+    <string-array name="box_type">
+        <item>TC Box</item>
+        <item>Punched TC Box</item>
+        <item>Aerated tin box</item>
+        <item>Sintex box</item>
+    </string-array>
 </resources>

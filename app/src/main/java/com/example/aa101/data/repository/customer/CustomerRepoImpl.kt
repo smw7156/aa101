@@ -15,4 +15,8 @@ class CustomerRepositoryImpl @Inject constructor(
     override suspend fun updateCustomer(updatedData: Customers) {
         TODO("Not yet implemented")
     }
+
+    override suspend fun getCustomersInitials(): Set<String> {
+        return customerDao.getAllCustomerInitial().toSet()
+    }
 }

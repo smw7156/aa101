@@ -14,4 +14,7 @@ interface CustomerDao {
 
     @Query("Select * from Customers")
     suspend fun getAllCustomer(): List<Customers>
+
+    @Query("Select customerInitial from Customers")
+    suspend fun getAllCustomerInitial(): List<String>
 }

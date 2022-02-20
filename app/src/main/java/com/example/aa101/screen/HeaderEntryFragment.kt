@@ -6,23 +6,27 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import com.example.aa101.R
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import com.example.aa101.data.room.SalesDatabase
+import androidx.fragment.app.viewModels
 import com.example.aa101.databinding.FragmentHeaderEntryBinding
 import com.example.aa101.util.getShortMonthNameFromMonthNumber
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 private const val TAG = "HeaderEntryFragment"
 
-
+@AndroidEntryPoint
 class HeaderEntryFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+
+    private val viewModel by viewModels<SalesViewModel>()
 
     private lateinit var binding: FragmentHeaderEntryBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,6 +45,7 @@ class HeaderEntryFragment : Fragment() {
 
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_header_entry, container, false)
+        binding.vm = viewModel
         return binding.root
     }
 
@@ -55,12 +60,28 @@ class HeaderEntryFragment : Fragment() {
         binding.tilSaleDate.setEndIconOnClickListener { v ->
             showDatePickerDialog(binding.tilSaleDate)
         }
-        initDao()
+
+        observeViewModel()
+        initBoxTypeField()
+        initTransportMedium()
+        initPartyField()
     }
 
-    private fun initDao() {
-        val salesHeaderDao =
-            SalesDatabase.getRoomDBInstance(requireContext().applicationContext).salesHeaderDao()
+    private fun observeViewModel() {
+        viewModel.apply {
+            supplierList.observe(viewLifecycleOwner, {
+                if (it != null) {
+                    Log.i(TAG, "Got supplier List")
+                    val supplierList: Array<out String> = it.toTypedArray()
+                    val adapter: ArrayAdapter<String> = ArrayAdapter<String>(
+                        requireContext(),
+                        android.R.layout.simple_list_item_1,
+                        supplierList
+                    )
+                    binding.trademarkSpinner.setAdapter(adapter)
+                }
+            })
+        }
     }
 
     /**
@@ -102,15 +123,25 @@ class HeaderEntryFragment : Fragment() {
     }
 
     private fun initBoxTypeField() {
+        val boxType: Array<out String> = resources.getStringArray(R.array.box_type)
+        val adapter: ArrayAdapter<String> =
+            ArrayAdapter<String>(requireContext(), android.R.layout.simple_list_item_1, boxType)
+        binding.autoCompTypeOfBox.setAdapter(adapter)
 
     }
 
     private fun initPartyField() {
-
+        viewModel.getSupplierTMList()
     }
 
     private fun initTransportMedium() {
-
+        val transportType: Array<out String> = resources.getStringArray(R.array.transportation_mode)
+        val adapter: ArrayAdapter<String> = ArrayAdapter<String>(
+            requireContext(),
+            android.R.layout.simple_list_item_1,
+            transportType
+        )
+        binding.autoCompTransportMedium.setAdapter(adapter)
     }
 
 

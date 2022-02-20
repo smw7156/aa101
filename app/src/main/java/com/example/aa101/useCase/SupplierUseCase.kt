@@ -10,4 +10,8 @@ class SupplierUseCase @Inject constructor(
     suspend fun addSuppliers(supplier: Suppliers) {
         supplierRepo.addSupplier(supplier)
     }
+
+    suspend fun getTMOfSuppliers(): Set<String> {
+        return supplierRepo.supplierTMList()
+    }
 }

@@ -9,6 +9,7 @@ import dagger.hilt.android.components.ViewModelComponent
 interface SupplierRepository {
     suspend fun addSupplier(supplierData: Suppliers)
     suspend fun updateSuppliers(updatedData: Suppliers)
+    suspend fun supplierTMList(): Set<String>
 }
 
 @Module

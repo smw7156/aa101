@@ -8,6 +8,7 @@ import com.example.aa101.R
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import com.example.aa101.data.room.SalesDatabase
 import com.example.aa101.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -79,7 +80,14 @@ class HomeFragment : Fragment() {
         binding.btnViewPartyBalance.setOnClickListener {
             onViewPartyBalanceClicked()
         }
+        initDao()
     }
+
+    private fun initDao() {
+        val salesHeaderDao =
+            SalesDatabase.getRoomDBInstance(requireContext().applicationContext).salesHeaderDao()
+    }
+
 
     fun onAddNewSalesEntryClicked() {
         val headerEntryFragment = HeaderEntryFragment.newInstance("param1", "param2")

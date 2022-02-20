@@ -1,10 +1,7 @@
 package com.example.aa101.di
 
 import com.example.aa101.data.room.SalesDatabase
-import com.example.aa101.data.room.dao.CreditPaymentDao
-import com.example.aa101.data.room.dao.CustomerDao
-import com.example.aa101.data.room.dao.DebitPaymentDao
-import com.example.aa101.data.room.dao.SupplierDao
+import com.example.aa101.data.room.dao.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -31,11 +28,20 @@ class DatabaseModule {
     fun provideCreditPaymentDao(salesDatabase: SalesDatabase): CreditPaymentDao {
         return salesDatabase.creditPaymentDao()
     }
+
     @Provides
     fun provideDebitPaymentDao(salesDatabase: SalesDatabase): DebitPaymentDao {
         return salesDatabase.debitPaymentDao()
     }
 
-    //todo = add rest of the daos
+    @Provides
+    fun provideSalesHeaderDao(salesDatabase: SalesDatabase): SalesHeaderDao {
+        return salesDatabase.salesHeaderDao()
+    }
+
+    @Provides
+    fun providesSalesDetailDao(salesDatabase: SalesDatabase): SalesDetailDao {
+        return salesDatabase.salesDetailDao()
+    }
 
 }
