@@ -101,6 +101,18 @@ class HeaderEntryFragment : Fragment() {
         /* After setting date in respective field pass focus to next field*/
     }
 
+    private fun initBoxTypeField() {
+
+    }
+
+    private fun initPartyField() {
+
+    }
+
+    private fun initTransportMedium() {
+
+    }
+
 
     companion object {
         /**

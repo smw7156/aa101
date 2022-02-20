@@ -55,7 +55,11 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/ed_received_date"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="date"
+                android:enabled="false"
+                android:textColor="@color/text_main"
+                />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -75,7 +79,10 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/ed_sales_date"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="date"
+                android:enabled="false"
+                android:textColor="@color/text_main"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -92,7 +99,9 @@
             <AutoCompleteTextView
                 android:id="@+id/trademark_spinner"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:lines="1"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.appcompat.widget.LinearLayoutCompat
@@ -119,7 +128,9 @@
                     android:id="@+id/auto_comp_no_of_box"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:entries="@array/no_1_to_50" />
+                    android:entries="@array/no_1_to_50"
+                    android:inputType="number"
+                    android:lines="1"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <androidx.appcompat.widget.LinearLayoutCompat
@@ -139,7 +150,8 @@
                     android:id="@+id/auto_comp_type_of_box"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:entries="@array/no_1_to_50" />
+                    android:entries="@array/no_1_to_50"
+                    android:lines="1"/>
             </com.google.android.material.textfield.TextInputLayout>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
@@ -163,7 +175,8 @@
                 android:paddingTop="@dimen/_4dp_margin"
                 android:paddingEnd="@dimen/_16dp_margin"
                 android:paddingBottom="@dimen/_4dp_margin"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:lines="1"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -174,6 +187,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_bw_new_sales_data_block"
             android:hint="@string/transport_detail_optional"
+            app:counterEnabled="true"
+            app:counterMaxLength="30"
             app:layout_constraintEnd_toEndOf="@+id/til_transport_medium"
             app:layout_constraintStart_toStartOf="@+id/til_transport_medium"
             app:layout_constraintTop_toBottomOf="@+id/til_transport_medium">
@@ -182,14 +197,15 @@
                 android:id="@+id/tied_transport_detail"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:inputType="textMultiLine" />
+                android:inputType="textMultiLine"
+                android:maxLines="3"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/proceed_with_header_button"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:layout_marginStart="@dimen/_32dp_margin"
             android:layout_marginEnd="@dimen/_32dp_margin"
             android:layout_marginBottom="@dimen/_32dp_margin"

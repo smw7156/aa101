@@ -9,9 +9,12 @@ import com.example.aa101.data.room.model.Suppliers
 @Dao
 interface SupplierDao {
 
-    @Query("select * from Suppliers")
+    @Query("SELECT * FROM Suppliers")
     suspend fun getAllSuppliers(): List<Suppliers>
 
     @Insert(onConflict = ABORT)
     suspend fun addSuppliers(suppliers: Suppliers)
+
+    @Query("SELECT supplierTradeMark FROM Suppliers")
+    suspend fun getSupplierTradeMarks(): List<String>
 }
