@@ -52,13 +52,67 @@ class HeaderEntryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        Log.i(TAG, "onViewCreated called")
         binding.tilReceivedDate.setEndIconOnClickListener { v ->
             showDatePickerDialog(binding.tilReceivedDate)
         }
 
         binding.tilSaleDate.setEndIconOnClickListener { v ->
             showDatePickerDialog(binding.tilSaleDate)
+        }
+
+        binding.trademarkSpinner.setOnFocusChangeListener { view, b ->
+            when (b) {
+                true -> {}
+                false -> {
+                    if (binding.trademarkSpinner.text.isNotEmpty()) {
+                        viewModel.setSelectedParty(binding.trademarkSpinner.text.toString())
+                    }
+                }
+            }
+        }
+
+        binding.autoCompNoOfBox.setOnFocusChangeListener { view, b ->
+            when (b) {
+                false -> {
+                    if (binding.autoCompNoOfBox.text.toString().isNotEmpty()) {
+                        viewModel.setNoOfBox(binding.autoCompNoOfBox.text.toString().toInt())
+                    }
+                }
+                else -> {}
+            }
+        }
+
+        binding.autoCompTypeOfBox.setOnFocusChangeListener { view, b ->
+            when (b) {
+                false -> {
+                    if (binding.autoCompTypeOfBox.text.isNotEmpty()) {
+                        viewModel.setTypeOfBox(binding.autoCompTypeOfBox.text.toString())
+                    }
+                }
+                else -> {}
+            }
+        }
+
+        binding.autoCompTransportMedium.setOnFocusChangeListener { view, b ->
+            when (b) {
+                false -> {
+                    if (binding.autoCompTransportMedium.text.isNotEmpty()) {
+                        viewModel.setTransportMedium(binding.autoCompTransportMedium.text.toString())
+                    }
+                }
+                else -> {}
+            }
+        }
+
+        binding.tiedTransportDetail.setOnFocusChangeListener { view, b ->
+            when (b) {
+                false -> {
+                    if (binding.tiedTransportDetail.text.toString().isNotEmpty()) {
+                        viewModel.setTransportDetail(binding.tiedTransportDetail.text.toString())
+                    }
+                }
+                else -> {}
+            }
         }
 
         observeViewModel()
@@ -82,10 +136,13 @@ class HeaderEntryFragment : Fragment() {
                 }
             })
 
-            moveToSalesEntry.observe(viewLifecycleOwner, {
-                if (it == true) {
-                    val detailFragment = SalesEntryFragment.newInstance("headerId","someParam")
-                    requireActivity().supportFragmentManager.beginTransaction().replace(R.id.main_frag_container,detailFragment).addToBackStack(null).commit()
+            moveToSalesEntry.observe(viewLifecycleOwner,  { header ->
+                if (header != null && header.id > 0) {
+                    val detailFragment = SalesEntryFragment.newInstance(header,"someParam")
+                    requireActivity().supportFragmentManager.beginTransaction()
+                        .replace(R.id.main_frag_container,detailFragment)
+                        .addToBackStack(null)
+                        .commit()
                 }
             })
         }
@@ -96,7 +153,7 @@ class HeaderEntryFragment : Fragment() {
      */
     private fun showDatePickerDialog(v: View?) {
 
-        val cal = Calendar.getInstance()
+        var cal = Calendar.getInstance()
         val thisYear = cal.get(Calendar.YEAR)
         val thisMonth = cal.get(Calendar.MONTH)
         val thisDay = cal.get(Calendar.DAY_OF_MONTH)
@@ -109,12 +166,16 @@ class HeaderEntryFragment : Fragment() {
                     binding.tilReceivedDate -> {
                         val dateText = "$dayOfMonth-$mon-$year"
                         binding.edReceivedDate.setText(dateText)
-                        Log.i(TAG, "view on date listener is tilReceivedDate")
+                        cal.set(year,month,dayOfMonth)
+                        viewModel.setReceivedDate(cal.time)
+                        Log.i(TAG, "view on date listener is ReceivedDate")
                     }
                     binding.tilSaleDate -> {
                         val dateText = "$dayOfMonth-$mon-$year"
                         binding.edSalesDate.setText(dateText)
-                        Log.i(TAG, "view on date listener is tilSaleDate")
+                        cal.set(year,month,dayOfMonth)
+                        viewModel.setSalesDate(cal.time)
+                        Log.i(TAG, "view on date listener is SaleDate")
                     }
                 }
 

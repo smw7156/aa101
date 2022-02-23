@@ -1,12 +1,14 @@
 package com.example.aa101.screen
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.example.aa101.R
+import com.example.aa101.data.room.model.SalesHeaders
 import com.example.aa101.databinding.FragmentSalesEntryNewBinding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -21,7 +23,9 @@ private const val ARG_PARAM2 = "param2"
  */
 class SalesEntryFragment : Fragment() {
     // TODO: Rename and change types of parameters
-    private var param1: String? = null
+
+    private val TAG = "SalesEntryFragment"
+    private var param1: SalesHeaders? = null
     private var param2: String? = null
 
     private lateinit var binding: FragmentSalesEntryNewBinding
@@ -29,7 +33,7 @@ class SalesEntryFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
+            param1 = it.getParcelable(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
     }
@@ -52,6 +56,11 @@ class SalesEntryFragment : Fragment() {
 //        val adapter: ArrayAdapter<String> = ArrayAdapter<String>(requireContext(),android.R.layout.simple_list_item_1,countries)
 //        binding.autoCompleteTextView.setAdapter(adapter)
 
+        if (param1 != null) {
+            Log.i(TAG, "header detail is: ${param1.toString()}")
+        } else {
+            Log.i(TAG, "header detail is NOT AVAILABLE")
+        }
     }
 
     companion object {
@@ -65,10 +74,10 @@ class SalesEntryFragment : Fragment() {
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+        fun newInstance(param1: SalesHeaders, param2: String) =
             SalesEntryFragment().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
+                    putParcelable(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
                 }
             }

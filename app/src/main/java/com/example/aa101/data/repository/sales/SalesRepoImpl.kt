@@ -11,11 +11,19 @@ class SalesRepoImpl @Inject constructor(
     private val detailDao: SalesDetailDao,
 ): SalesRepository {
 
-    override suspend fun createHeader(header: SalesHeaders) {
-        TODO("Not yet implemented")
-    }
+    override suspend fun createHeader(header: SalesHeaders): Int =
+        headerDao.addNewSalesHeader(header).toInt()
 
-    override suspend fun addSaleInHeader(detail: SalesDetail) {
-        TODO("Not yet implemented")
-    }
+    override suspend fun addSaleInHeader(detail: SalesDetail): Int =
+        detailDao.addNewSaleEntry(detail).toInt()
+
+    override suspend fun getHeaderDetailForId(headerId: Int): SalesHeaders =
+        headerDao.getSalesHeaderForId(headerId)
+
+    override suspend fun getSaleDetailForId(salesId: Int): SalesDetail =
+        detailDao.getSalesDetailForId(salesId)
+
+    override suspend fun getSalesForHeader(headerId: Int): List<SalesDetail> =
+        detailDao.getSalesForHeaderId(headerId)
+
 }

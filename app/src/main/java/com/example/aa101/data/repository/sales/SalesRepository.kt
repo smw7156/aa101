@@ -9,8 +9,11 @@ import dagger.hilt.android.components.ViewModelComponent
 
 interface SalesRepository {
 
-    suspend fun createHeader(header: SalesHeaders)
-    suspend fun addSaleInHeader(detail: SalesDetail)
+    suspend fun createHeader(header: SalesHeaders): Int
+    suspend fun addSaleInHeader(detail: SalesDetail): Int
+    suspend fun getHeaderDetailForId(headerId: Int): SalesHeaders
+    suspend fun getSaleDetailForId(salesId: Int): SalesDetail
+    suspend fun getSalesForHeader(headerId: Int): List<SalesDetail>
 
 }
 
