@@ -5,7 +5,7 @@ import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
 import com.example.aa101.data.room.converter.DateToLongConverter
-import java.util.*
+import java.time.LocalDate
 
 @Entity(
     tableName = "CreditPayments",
@@ -21,7 +21,7 @@ data class CreditPayments(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
     @TypeConverters(value = [DateToLongConverter::class])
-    val dateOfPayment: Date,
+    val dateOfPayment: LocalDate,
     val amount: Double,
     val purpose: String,
     val detail: String?,

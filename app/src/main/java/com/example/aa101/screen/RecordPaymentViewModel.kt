@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.aa101.screen.payment.PaymentType
+import java.time.LocalDate
 import java.util.*
 
 class RecordPaymentViewModel : ViewModel() {
@@ -11,8 +12,8 @@ class RecordPaymentViewModel : ViewModel() {
     private var _paymentType = MutableLiveData<PaymentType>()
     val paymentType: LiveData<PaymentType> get() = _paymentType
 
-    private var _paymentDate = MutableLiveData<Date>()
-    val paymentDate: LiveData<Date> get() = _paymentDate
+    private var _paymentDate = MutableLiveData<LocalDate>()
+    val paymentDate: LiveData<LocalDate> get() = _paymentDate
 
     private var _paymentAmount = MutableLiveData<Double>()
     val paymentAmount: LiveData<Double> get() = _paymentAmount

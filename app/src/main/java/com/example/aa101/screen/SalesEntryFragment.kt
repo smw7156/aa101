@@ -7,9 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.example.aa101.R
 import com.example.aa101.data.room.model.SalesHeaders
 import com.example.aa101.databinding.FragmentSalesEntryNewBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -21,6 +23,8 @@ private const val ARG_PARAM2 = "param2"
  * Use the [SalesEntryFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
+
+@AndroidEntryPoint
 class SalesEntryFragment : Fragment() {
     // TODO: Rename and change types of parameters
 
@@ -28,6 +32,7 @@ class SalesEntryFragment : Fragment() {
     private var param1: SalesHeaders? = null
     private var param2: String? = null
 
+    private val viewModel by viewModels<SalesViewModel>()
     private lateinit var binding: FragmentSalesEntryNewBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,11 +61,16 @@ class SalesEntryFragment : Fragment() {
 //        val adapter: ArrayAdapter<String> = ArrayAdapter<String>(requireContext(),android.R.layout.simple_list_item_1,countries)
 //        binding.autoCompleteTextView.setAdapter(adapter)
 
+        param1.let { binding.header = it }
         if (param1 != null) {
             Log.i(TAG, "header detail is: ${param1.toString()}")
         } else {
             Log.i(TAG, "header detail is NOT AVAILABLE")
         }
+    }
+
+    private fun initCustomerList() {
+
     }
 
     companion object {

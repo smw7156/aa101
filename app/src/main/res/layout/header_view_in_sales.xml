@@ -4,7 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="android.view.View"/>
 
+        <variable
+            name="header"
+            type="com.example.aa101.data.room.model.SalesHeaders" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,6 +27,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            android:text="@{header.partyTradeMark}"
             android:layout_marginStart="@dimen/_16dp_margin" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
@@ -52,7 +57,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
-                    tools:text="22-Dec-2022" />
+                    tools:text="22-Dec-2022"
+                    app:setDateText="@{header.dateOfReceived}"
+                    />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -78,7 +85,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
                     android:textSize="16sp"
-                    tools:text="23-Dec-2022" />
+                    tools:text="23-Dec-2022"
+                    app:setDateText="@{header.dateOfSale}"/>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -93,7 +101,8 @@
             android:layout_marginTop="@dimen/_8dp_margin"
             app:layout_constraintStart_toStartOf="@id/tv_party_name"
             app:layout_constraintTop_toBottomOf="@id/tv_party_name"
-            tools:text="100" />
+            tools:text="100"
+            android:text="@{String.valueOf(header.noOfBoxs)}"/>
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_type_of_box"
@@ -103,7 +112,8 @@
             android:layout_marginStart="@dimen/_8dp_margin"
             app:layout_constraintBaseline_toBaselineOf="@+id/tv_no_of_box"
             app:layout_constraintStart_toEndOf="@id/tv_no_of_box"
-            tools:text="TC Box" />
+            tools:text="TC Box"
+            android:text="@{header.boxType}"/>
 
 
         <com.google.android.material.textview.MaterialTextView
@@ -114,7 +124,8 @@
             android:layout_marginTop="@dimen/_8dp_margin"
             app:layout_constraintStart_toStartOf="@id/tv_no_of_box"
             app:layout_constraintTop_toBottomOf="@id/tv_no_of_box"
-            tools:text="By Train" />
+            tools:text="By Train"
+            android:text="@{header.transportMedium}"/>
 
 
         <com.google.android.material.textview.MaterialTextView
@@ -125,7 +136,8 @@
             android:layout_marginStart="@dimen/_8dp_margin"
             app:layout_constraintBaseline_toBaselineOf="@+id/tv_transport_medium"
             app:layout_constraintStart_toEndOf="@id/tv_party_name"
-            tools:text="18006 DN" />
+            tools:text="18006 DN"
+            android:text="@{header.transportDetail}"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

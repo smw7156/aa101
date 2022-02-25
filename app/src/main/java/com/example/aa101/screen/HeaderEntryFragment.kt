@@ -14,6 +14,7 @@ import androidx.fragment.app.viewModels
 import com.example.aa101.databinding.FragmentHeaderEntryBinding
 import com.example.aa101.util.getShortMonthNameFromMonthNumber
 import dagger.hilt.android.AndroidEntryPoint
+import java.time.LocalDate
 import java.util.*
 
 private const val ARG_PARAM1 = "param1"
@@ -160,25 +161,24 @@ class HeaderEntryFragment : Fragment() {
 
         Log.i(TAG, "year is $thisYear, month is $thisMonth, day is $thisDay")
         val datePickerDialog = DatePickerDialog(
-            requireContext(), { view, year, month, dayOfMonth ->
-                val mon = getShortMonthNameFromMonthNumber(month)
+            requireContext(), { view, year, calendarMonth, dayOfMonth ->
+                val mon = getShortMonthNameFromMonthNumber(calendarMonth,true)
                 when (v) {
                     binding.tilReceivedDate -> {
                         val dateText = "$dayOfMonth-$mon-$year"
                         binding.edReceivedDate.setText(dateText)
-                        cal.set(year,month,dayOfMonth)
-                        viewModel.setReceivedDate(cal.time)
+                        /** Calendar month start from 0 */
+                        viewModel.setReceivedDate(LocalDate.of(year,calendarMonth+1,dayOfMonth))
                         Log.i(TAG, "view on date listener is ReceivedDate")
                     }
                     binding.tilSaleDate -> {
                         val dateText = "$dayOfMonth-$mon-$year"
                         binding.edSalesDate.setText(dateText)
-                        cal.set(year,month,dayOfMonth)
-                        viewModel.setSalesDate(cal.time)
+                        /** Calendar month start from 0 */
+                        viewModel.setSalesDate(LocalDate.of(year,calendarMonth+1,dayOfMonth))
                         Log.i(TAG, "view on date listener is SaleDate")
                     }
                 }
-
             },
             thisYear,
             thisMonth,

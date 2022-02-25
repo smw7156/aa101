@@ -1,47 +1,50 @@
 package com.example.aa101.util
 
 import java.lang.StringBuilder
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 /**
  * @param monthNumber : 0 - 11
  * @return Full month name - complete name
  */
-fun getMonthNameForNumber(monthNumber: Int): String {
-    return when (monthNumber) {
-        0 -> {
+fun getMonthNameForNumber(monthNumber: Int, isCalendarMonth: Boolean): String {
+    val month = if (isCalendarMonth) monthNumber+1 else monthNumber
+    return when (month) {
+        1 -> {
             "January"
         }
-        1 -> {
+        2 -> {
             "February"
         }
-        2 -> {
+        3 -> {
             "March"
         }
-        3 -> {
+        4 -> {
             "April"
         }
-        4 -> {
+        5 -> {
             "May"
         }
-        5 -> {
+        6 -> {
             "June"
         }
-        6 -> {
+        7 -> {
             "July"
         }
-        7 -> {
+        8 -> {
             "August"
         }
-        8 -> {
+        9 -> {
             "September"
         }
-        9 -> {
+        10 -> {
             "October"
         }
-        10 -> {
+        11 -> {
             "November"
         }
-        11 -> {
+        12 -> {
             "December"
         }
         else -> {
@@ -68,7 +71,12 @@ fun getShortMonthNameFromFullName(fullMonthName: String): String {
     }
 }
 
-fun getShortMonthNameFromMonthNumber(monthNumber: Int): String {
-    return getShortMonthNameFromFullName(getMonthNameForNumber(monthNumber))
+fun getShortMonthNameFromMonthNumber(monthNumber: Int, isCalendarMonth: Boolean = false): String {
+    return getShortMonthNameFromFullName(getMonthNameForNumber(monthNumber, isCalendarMonth))
+}
+
+fun LocalDate.toShowDate(): String {
+    val formatter = DateTimeFormatter.ofPattern("dd-MMM-yyyy")
+    return this.format(formatter)
 }
 

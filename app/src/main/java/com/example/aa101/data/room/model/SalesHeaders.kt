@@ -9,7 +9,7 @@ import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
 import com.example.aa101.data.room.converter.DateToLongConverter
 import kotlinx.android.parcel.Parcelize
-import java.util.*
+import java.time.LocalDate
 
 @Entity(
     tableName = "SalesHeaders",
@@ -26,12 +26,12 @@ data class SalesHeaders(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
     @TypeConverters(value = [DateToLongConverter::class])
-    val dateOfReceived: Date,
+    val dateOfReceived: LocalDate,
     @TypeConverters(value = [DateToLongConverter::class])
-    val dateOfSale: Date,
+    val dateOfSale: LocalDate,
     val partyTradeMark: String,
     val noOfBoxs: Int,
-    // val boxType: String, //is Missing TODO() <-
+    val boxType: String, //is Missing TODO() <-
     val transportMedium: String,
     val transportDetail: String,
-): Parcelable
+) : Parcelable

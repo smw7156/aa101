@@ -13,7 +13,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.util.*
+import java.time.LocalDate
 import javax.inject.Inject
 
 @HiltViewModel
@@ -37,11 +37,11 @@ class SalesViewModel @Inject constructor(
     private var _customer = MutableLiveData<String>()
     val customer: LiveData<String> get() = _customer
 
-    private var _receivedDate = MutableLiveData<Date>()
-    val receivedDate: LiveData<Date> get() = _receivedDate
+    private var _receivedDate = MutableLiveData<LocalDate>()
+    val receivedDate: LiveData<LocalDate> get() = _receivedDate
 
-    private var _salesDate = MutableLiveData<Date>()
-    val salesDate: LiveData<Date> get() = _salesDate
+    private var _salesDate = MutableLiveData<LocalDate>()
+    val salesDate: LiveData<LocalDate> get() = _salesDate
 
     private var _noOfBox = MutableLiveData<Int>()
     val noOfBox: LiveData<Int> get() = _noOfBox
@@ -67,8 +67,8 @@ class SalesViewModel @Inject constructor(
         }
     }
 
-    fun setReceivedDate(rcvDate: Date) = _receivedDate.postValue(rcvDate)
-    fun setSalesDate(saleDate: Date) = _salesDate.postValue(saleDate)
+    fun setReceivedDate(rcvDate: LocalDate) = _receivedDate.postValue(rcvDate)
+    fun setSalesDate(saleDate: LocalDate) = _salesDate.postValue(saleDate)
 
     fun setSelectedParty(partyTM: String) = _supplier.postValue(partyTM)
     fun setTypeOfBox(boxType: String) = _typeOfBox.postValue(boxType)
@@ -94,7 +94,7 @@ class SalesViewModel @Inject constructor(
          * HeaderId that need to be passed to SalesDetail Fragment
          * */
         // create SalesHeader object
-        var salesHeader = SalesHeaders(0, _receivedDate.value!!, _salesDate.value!!, _supplier.value!!, _noOfBox.value!!, _transportMedium.value!!, if(_transportDetail.value.isNullOrEmpty())  "No Value" else _transportDetail.value!!)
+        var salesHeader = SalesHeaders(0, _receivedDate.value!!, _salesDate.value!!, _supplier.value!!, _noOfBox.value!!,_typeOfBox.value!!, _transportMedium.value!!, if(_transportDetail.value.isNullOrEmpty())  "No Value" else _transportDetail.value!!)
         viewModelScope.launch(Dispatchers.IO) {
             val headerId = salesUseCase.addSalesHeader(salesHeader)
             Log.i(TAG, "newLy entered Sales Header row id is $headerId")
