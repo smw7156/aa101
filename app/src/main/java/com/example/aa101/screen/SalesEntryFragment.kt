@@ -5,6 +5,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -67,10 +69,68 @@ class SalesEntryFragment : Fragment() {
         } else {
             Log.i(TAG, "header detail is NOT AVAILABLE")
         }
+        binding.tiedGrossWeight.addTextChangedListener {
+            if (!it.isNullOrEmpty()) {
+                Log.i(TAG, "grossWeight is ${it.toString().toDouble()}")
+                viewModel.setGrossWt(it.toString().toDouble())
+            }
+        }
+
+        binding.tiedRate.addTextChangedListener {
+            if (!it.isNullOrEmpty()) {
+                viewModel.setRate(it.toString().toDouble())
+            }
+        }
+
+        binding.tiedItemDescription.addTextChangedListener {
+            if (it != null) {
+                viewModel.setItemDetail(it.toString())
+            }
+        }
+
+        binding.tiedExtraDetail.addTextChangedListener {
+            if (it != null) {
+                viewModel.setItemExtraDetail(it.toString())
+            }
+        }
+        initCustomerList()
+        observeLiveDatas()
+    }
+
+    private fun observeLiveDatas() {
+        viewModel.apply {
+            customerList.observe(viewLifecycleOwner, {
+                if (!it.isNullOrEmpty()) {
+                    val customerList = it.toTypedArray()
+                    val adapter = ArrayAdapter<String>(
+                        requireContext(),
+                        android.R.layout.simple_spinner_dropdown_item,
+                        customerList
+                    )
+                    binding.tiedCustomerName.setAdapter(adapter)
+                }
+            })
+
+            grossWt.observe(viewLifecycleOwner, {
+                calculateNetWeight()
+            })
+
+            netWt.observe(viewLifecycleOwner, {
+                binding.tvNetWeight.text = String.format("%.3f", it)
+            })
+
+            rate.observe(viewLifecycleOwner, {
+                getAmount()
+            })
+
+            amount.observe(viewLifecycleOwner, {
+                binding.tvAmount.text = String.format("%.2f",it ?: 0.0)
+            })
+        }
     }
 
     private fun initCustomerList() {
-
+        viewModel.getCustomerInitialList()
     }
 
     companion object {

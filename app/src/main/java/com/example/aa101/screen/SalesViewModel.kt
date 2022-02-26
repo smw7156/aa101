@@ -55,6 +55,21 @@ class SalesViewModel @Inject constructor(
     private var _transportMedium = MutableLiveData<String>()
     val transportMedium: LiveData<String> get() = _transportMedium
 
+    private var _itemDetail = MutableLiveData<String>()
+    val itemDetail: LiveData<String> get() = _itemDetail
+
+    private var _grossWt = MutableLiveData<Double>()
+    val grossWt : LiveData<Double> get() = _grossWt
+
+    private var _netWt = MutableLiveData<Double>()
+    val netWt : LiveData<Double> get() = _netWt
+
+    private var _rate = MutableLiveData<Double>()
+    val rate : LiveData<Double> get() = _rate
+
+    private var _amount = MutableLiveData<Double>()
+    val amount : LiveData<Double> get() = _amount
+
     private var _itemExtraDetails = MutableLiveData<String>()
     val itemExtraDetails: LiveData<String> get() = _itemExtraDetails
 
@@ -77,6 +92,11 @@ class SalesViewModel @Inject constructor(
 
     fun setNoOfBox(boxes: Int) = _noOfBox.postValue(boxes)
 
+    fun setGrossWt(weight: Double) = _grossWt.postValue(weight)
+    fun setRate(rate: Double) = _rate.postValue(rate)
+    fun setItemDetail(itemDetail: String) = _itemDetail.postValue(itemDetail)
+    fun setItemExtraDetail(extraDetail: String) = _itemExtraDetails.postValue(extraDetail)
+
     fun getCustomerInitialList() {
         viewModelScope.launch(Dispatchers.IO) {
             _customerList.postValue(customerUseCase.getInitialsOfCustomer())
@@ -86,6 +106,14 @@ class SalesViewModel @Inject constructor(
     fun onProceedButtonClicked() {
         Log.i(TAG,"ProceedButton clicked")
         validateHeaderFieldsAndProceed()
+    }
+
+    fun calculateNetWeight() {
+        _netWt.postValue(salesUseCase.calculateNetWeight(_grossWt.value ?: 0.0))
+    }
+
+    fun getAmount() {
+        _amount.postValue((_netWt.value ?: 0.0) * (_rate.value ?: 0 + 0.25))
     }
 
     private fun validateHeaderFieldsAndProceed() {

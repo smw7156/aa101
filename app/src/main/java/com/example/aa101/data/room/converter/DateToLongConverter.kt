@@ -4,6 +4,8 @@ import androidx.room.TypeConverter
 import java.time.DateTimeException
 import java.time.LocalDate
 
+/** Converting LocalDate to long
+ * and vice-versa*/
 class DateToLongConverter {
 
     @TypeConverter
