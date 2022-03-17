@@ -6,9 +6,12 @@ import android.view.LayoutInflater
 import com.example.aa101.R
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import com.example.aa101.databinding.FragmentAddSupplierBinding
+import com.example.aa101.util.empty
 import dagger.hilt.android.AndroidEntryPoint
 
 // TODO: Rename parameter arguments, choose names that match
@@ -51,56 +54,75 @@ class AddSupplierFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.tiedSupplierName.setOnFocusChangeListener { v, hasFocus ->
-            when (hasFocus) {
-                true -> {}
-                false -> {
-                    if (binding.tiedSupplierName.text?.isNotEmpty() == true) {
-                        viewModel.setSupplierName(binding.tiedSupplierName.text.toString())
-                    }
+        binding.tiedSupplierName.addTextChangedListener {
+            if (!it.isNullOrEmpty()) {
+                viewModel.setSupplierName(binding.tiedSupplierName.text.toString())
+            }
+        }
+
+        binding.tiedSupplierTrademark.addTextChangedListener{
+            if (!it.isNullOrEmpty()) {
+                viewModel.setSupplierTradeMark(binding.tiedSupplierTrademark.text.toString())
+            }
+        }
+
+        binding.tiedSupplierPhoneNo.addTextChangedListener {
+            if (!it.isNullOrEmpty()) {
+                viewModel.setSupplierMobile(binding.tiedSupplierPhoneNo.text.toString())
+            }
+        }
+        binding.tiedSupplierEmail.addTextChangedListener {
+            if (!it.isNullOrEmpty()) {
+                viewModel.setSupplierEmail(binding.tiedSupplierEmail.text.toString())
+            }
+        }
+        binding.tiedSupplierAddress.addTextChangedListener {
+            if (!it.isNullOrEmpty()) {
+                viewModel.setSupplierEmail(binding.tiedSupplierAddress.text.toString())
+            }
+        }
+        observeLiveData()
+    }
+
+    private fun observeLiveData() {
+        viewModel.apply {
+            isSupplierAdded.observe(viewLifecycleOwner) {
+                if (it) {
+                    showSupplierAddedMessage()
+                    clearFields()
+                    resetSupplierAdded()
                 }
             }
         }
-        binding.tiedSupplierTrademark.setOnFocusChangeListener { v, hasFocus ->
-            when (hasFocus) {
-                true -> {}
-                false -> {
-                    if (binding.tiedSupplierTrademark.text?.isNotEmpty() == true) {
-                        viewModel.setSupplierTradeMark(binding.tiedSupplierTrademark.text.toString())
-                    }
-                }
-            }
+    }
+
+    private fun clearFields() {
+        binding.tiedSupplierAddress.apply {
+            setText(String.empty())
+            clearFocus()
         }
-        binding.tiedSupplierPhoneNo.setOnFocusChangeListener { v, hasFocus ->
-            when (hasFocus) {
-                true -> {}
-                false -> {
-                    if (binding.tiedSupplierPhoneNo.text?.isNotEmpty() == true) {
-                        viewModel.setSupplierMobile(binding.tiedSupplierPhoneNo.text.toString())
-                    }
-                }
-            }
+        binding.tiedSupplierName.apply {
+            setText(String.empty())
+            clearFocus()
         }
-        binding.tiedSupplierEmail.setOnFocusChangeListener { v, hasFocus ->
-            when (hasFocus) {
-                true -> {}
-                false -> {
-                    if (binding.tiedSupplierEmail.text?.isNotEmpty() == true) {
-                        viewModel.setSupplierEmail(binding.tiedSupplierEmail.text.toString())
-                    }
-                }
-            }
+        binding.tiedSupplierTrademark.apply {
+            setText(String.empty())
+            clearFocus()
         }
-        binding.tiedSupplierAddress.setOnFocusChangeListener { v, hasFocus ->
-            when (hasFocus) {
-                true -> {}
-                false -> {
-                    if (binding.tiedSupplierAddress.text?.isNotEmpty() == true) {
-                        viewModel.setSupplierEmail(binding.tiedSupplierAddress.text.toString())
-                    }
-                }
-            }
+        binding.tiedSupplierEmail.apply {
+            setText(String.empty())
+            clearFocus()
         }
+        binding.tiedSupplierPhoneNo.apply {
+            setText(String.empty())
+            clearFocus()
+        }
+    }
+
+    private fun showSupplierAddedMessage() {
+        Toast.makeText(requireContext(),
+            "Supplier: ${viewModel.partyTrademark.value} added ",
+            Toast.LENGTH_LONG).show()
     }
 
     companion object {

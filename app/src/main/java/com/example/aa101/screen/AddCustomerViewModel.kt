@@ -38,6 +38,9 @@ class AddCustomerViewModel @Inject constructor(
     private var _customerInitialErrorMessage = MutableLiveData<String?>()
     val customerInitialErrorMessage: LiveData<String?> get() = _customerInitialErrorMessage
 
+    private var _isCustomerAdded = MutableLiveData(false)
+    val isCustomerAdded: LiveData<Boolean> get() = _isCustomerAdded
+
     fun setCustomerName(customerName: String) = _customerName.postValue(customerName)
     fun setCustomerInitial(customerInitial: String) = _customerInitial.postValue(customerInitial)
     fun setCustomerMobNo(customerName: String) = _customerMobNo.postValue(customerName)
@@ -70,7 +73,7 @@ class AddCustomerViewModel @Inject constructor(
         Log.i(TAG, "adding customer in DB")
 
         viewModelScope.launch(Dispatchers.IO) {
-            customerUseCase.addCustomer(
+            if (customerUseCase.addCustomer(
                 Customers(
                     customerName = _customerName.value.toString() ,
                     customerInitial = _customerInitial.value.toString(),
@@ -78,8 +81,14 @@ class AddCustomerViewModel @Inject constructor(
                     customerEmail = _customerEmail.value.toString(),
                     customerAddress = _customerAddress.value.toString(),
                 )
-            )
+            ) > 0 ) {
+                _isCustomerAdded.postValue(true)
+            }
         }
+    }
+
+    fun resetCustomerAdded() {
+        _isCustomerAdded.postValue(false)
     }
 
 

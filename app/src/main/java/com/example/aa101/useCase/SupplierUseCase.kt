@@ -7,8 +7,8 @@ import javax.inject.Inject
 class SupplierUseCase @Inject constructor(
     private val supplierRepo: SupplierRepository
 ){
-    suspend fun addSuppliers(supplier: Suppliers) {
-        supplierRepo.addSupplier(supplier)
+    suspend fun addSuppliers(supplier: Suppliers): Int {
+        return supplierRepo.addSupplier(supplier)
     }
 
     suspend fun getTMOfSuppliers(): Set<String> {

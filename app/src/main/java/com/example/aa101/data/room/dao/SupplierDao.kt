@@ -13,7 +13,7 @@ interface SupplierDao {
     suspend fun getAllSuppliers(): List<Suppliers>
 
     @Insert(onConflict = ABORT)
-    suspend fun addSuppliers(suppliers: Suppliers)
+    suspend fun addSuppliers(suppliers: Suppliers): Long
 
     @Query("SELECT supplierTradeMark FROM Suppliers")
     suspend fun getSupplierTradeMarks(): List<String>

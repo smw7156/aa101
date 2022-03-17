@@ -9,8 +9,8 @@ class CustomerUseCase @Inject constructor(
     private val customerRepo: CustomerRepository
 ) {
 
-    suspend fun addCustomer(customer: Customers) {
-        customerRepo.addCustomer(customer)
+    suspend fun addCustomer(customer: Customers): Int {
+         return customerRepo.addCustomer(customer)
     }
 
     suspend fun getInitialsOfCustomer(): Set<String> {

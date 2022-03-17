@@ -5,10 +5,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.aa101.data.room.model.SalesDetail
 import com.example.aa101.data.room.model.SalesHeaders
 import com.example.aa101.useCase.CustomerUseCase
 import com.example.aa101.useCase.SalesUseCase
 import com.example.aa101.useCase.SupplierUseCase
+import com.example.aa101.util.empty
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -76,6 +78,8 @@ class SalesViewModel @Inject constructor(
     private var _moveToSalesEntry = MutableLiveData<SalesHeaders>(null)
     val moveToSalesEntry : LiveData<SalesHeaders> get() = _moveToSalesEntry
 
+    private var currentHeaderId = MutableLiveData<Int>()
+
     fun getSupplierTMList() {
         viewModelScope.launch(Dispatchers.IO) {
             _supplierList.postValue(supplierUseCase.getTMOfSuppliers())
@@ -96,6 +100,8 @@ class SalesViewModel @Inject constructor(
     fun setRate(rate: Double) = _rate.postValue(rate)
     fun setItemDetail(itemDetail: String) = _itemDetail.postValue(itemDetail)
     fun setItemExtraDetail(extraDetail: String) = _itemExtraDetails.postValue(extraDetail)
+
+    fun setHeaderId(headerId: Int?) = currentHeaderId.postValue(headerId ?: 0)
 
     fun getCustomerInitialList() {
         viewModelScope.launch(Dispatchers.IO) {
@@ -130,6 +136,21 @@ class SalesViewModel @Inject constructor(
             withContext(Dispatchers.Main) {
                 _moveToSalesEntry.postValue(salesHeader)
             }
+        }
+    }
+
+    fun onAddSalesEntryClicked() {
+        validateSalesFieldAndProceed()
+    }
+
+    private fun validateSalesFieldAndProceed() {
+        //TOdo validate field -
+        /** Validates salesField and add add sales entry*/
+
+        val salesDetail = SalesDetail(0, currentHeaderId.value!! ,itemDetail.value!!,_grossWt.value!!,_rate.value!!,_customer.value!!,_itemExtraDetails.value!!)
+        viewModelScope.launch(Dispatchers.IO) {
+            val salesId = salesUseCase.addSalesDetailInHeader(salesDetail)
+            Log.i(TAG,"sales id is $salesId")
         }
     }
 

@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import androidx.core.widget.addTextChangedListener
 import com.example.aa101.R
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -105,14 +106,9 @@ class HeaderEntryFragment : Fragment() {
             }
         }
 
-        binding.tiedTransportDetail.setOnFocusChangeListener { view, b ->
-            when (b) {
-                false -> {
-                    if (binding.tiedTransportDetail.text.toString().isNotEmpty()) {
-                        viewModel.setTransportDetail(binding.tiedTransportDetail.text.toString())
-                    }
-                }
-                else -> {}
+        binding.tiedTransportDetail.addTextChangedListener {
+            if (!it.isNullOrEmpty()) {
+                viewModel.setTransportDetail(binding.tiedTransportDetail.text.toString())
             }
         }
 

@@ -1,6 +1,7 @@
 package com.example.aa101.screen
 
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -34,6 +35,9 @@ class AddSupplierViewModel @Inject constructor(
     private var _supplierAddress = MutableLiveData<String>()
     val supplierAddress: LiveData<String> get() = _supplierAddress
 
+    private var _isSupplierAdded = MutableLiveData<Boolean>(false)
+    val isSupplierAdded: LiveData<Boolean> get() = _isSupplierAdded
+
     fun setSupplierName(name: String) = _supplierName.postValue(name)
     fun setSupplierTradeMark(tradeMark: String) = _partyTrademark.postValue(tradeMark)
     fun setSupplierMobile(value: String) = _supplierMobNo.postValue(value)
@@ -60,7 +64,7 @@ class AddSupplierViewModel @Inject constructor(
 
         Log.i(TAG, "adding supplier in DB")
         viewModelScope.launch(Dispatchers.IO) {
-            supplierUseCase.addSuppliers(
+            if (supplierUseCase.addSuppliers(
                 Suppliers(
                     supplierName = _supplierName.value.toString(),
                     supplierTradeMark = _partyTrademark.value.toString(),
@@ -68,8 +72,12 @@ class AddSupplierViewModel @Inject constructor(
                     supplierEmail = _supplierEmail.value.toString(),
                     supplierAddress = _supplierAddress.value.toString(),
                 )
-            )
+            ) > 0 ) {
+                _isSupplierAdded.postValue(true)
+            }
         }
     }
+
+    fun resetSupplierAdded() = _isSupplierAdded.postValue(false)
 
 }

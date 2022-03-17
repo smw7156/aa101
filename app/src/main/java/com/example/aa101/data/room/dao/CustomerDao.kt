@@ -10,7 +10,7 @@ import com.example.aa101.data.room.model.Customers
 interface CustomerDao {
 
     @Insert(onConflict = ABORT)
-    suspend fun addCustomer(customer: Customers)
+    suspend fun addCustomer(customer: Customers): Long
 
     @Query("Select * from Customers")
     suspend fun getAllCustomer(): List<Customers>

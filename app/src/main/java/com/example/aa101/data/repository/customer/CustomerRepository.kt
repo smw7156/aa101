@@ -8,7 +8,7 @@ import dagger.hilt.android.components.ViewModelComponent
 import javax.inject.Inject
 
 interface CustomerRepository {
-    suspend fun addCustomer(customerData: Customers)
+    suspend fun addCustomer(customerData: Customers): Int
     suspend fun updateCustomer(updatedData: Customers)
     suspend fun getCustomersInitials(): Set<String>
 }

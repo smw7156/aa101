@@ -8,8 +8,8 @@ class SupplierRepositoryImpl @Inject constructor(
     private val supplierDao: SupplierDao
 ): SupplierRepository {
 
-    override suspend fun addSupplier(supplierData: Suppliers) {
-        supplierDao.addSuppliers(supplierData)
+    override suspend fun addSupplier(supplierData: Suppliers): Int {
+        return supplierDao.addSuppliers(supplierData).toInt()
     }
 
     override suspend fun updateSuppliers(updatedData: Suppliers) {

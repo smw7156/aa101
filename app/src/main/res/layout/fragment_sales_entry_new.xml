@@ -10,6 +10,10 @@
             name="header"
             type="com.example.aa101.data.room.model.SalesHeaders" />
 
+        <variable
+            name="viewModel"
+            type="com.example.aa101.screen.SalesViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -200,6 +204,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/_32dp_margin"
             android:text="create Entry"
+            android:onClick="@{() -> viewModel.onAddSalesEntryClicked()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/til_extra_detail"
             app:layout_constraintHorizontal_bias="0.0"
