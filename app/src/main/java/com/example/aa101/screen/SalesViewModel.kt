@@ -75,10 +75,13 @@ class SalesViewModel @Inject constructor(
     private var _itemExtraDetails = MutableLiveData<String>()
     val itemExtraDetails: LiveData<String> get() = _itemExtraDetails
 
-    private var _moveToSalesEntry = MutableLiveData<SalesHeaders>(null)
-    val moveToSalesEntry : LiveData<SalesHeaders> get() = _moveToSalesEntry
+    private var _moveToSalesEntry = MutableLiveData<SalesHeaders?>(null)
+    val moveToSalesEntry : LiveData<SalesHeaders?> get() = _moveToSalesEntry
 
     private var currentHeaderId = MutableLiveData<Int>()
+
+    private var _isSalesAdded = MutableLiveData<Boolean>(false)
+    val isSalesAdded : LiveData<Boolean> get() = _isSalesAdded
 
     fun getSupplierTMList() {
         viewModelScope.launch(Dispatchers.IO) {
@@ -100,6 +103,7 @@ class SalesViewModel @Inject constructor(
     fun setRate(rate: Double) = _rate.postValue(rate)
     fun setItemDetail(itemDetail: String) = _itemDetail.postValue(itemDetail)
     fun setItemExtraDetail(extraDetail: String) = _itemExtraDetails.postValue(extraDetail)
+    fun setCustomerName(customer: String) = _customer.postValue(customer)
 
     fun setHeaderId(headerId: Int?) = currentHeaderId.postValue(headerId ?: 0)
 
@@ -119,7 +123,7 @@ class SalesViewModel @Inject constructor(
     }
 
     fun getAmount() {
-        _amount.postValue((_netWt.value ?: 0.0) * (_rate.value ?: 0 + 0.25))
+        _amount.postValue((_netWt.value ?: 0.0) * (_rate.value?.plus(0.25)!!))
     }
 
     private fun validateHeaderFieldsAndProceed() {
@@ -140,6 +144,7 @@ class SalesViewModel @Inject constructor(
     }
 
     fun onAddSalesEntryClicked() {
+
         validateSalesFieldAndProceed()
     }
 
@@ -151,7 +156,14 @@ class SalesViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             val salesId = salesUseCase.addSalesDetailInHeader(salesDetail)
             Log.i(TAG,"sales id is $salesId")
+            if (salesId > 0) {
+                _isSalesAdded.postValue(true)
+            }
         }
     }
+
+    fun resetIsCustomerAdded() = _isSalesAdded.postValue(false)
+
+    fun resetMoveToSalesEntry() = _moveToSalesEntry.postValue(null)
 
 }

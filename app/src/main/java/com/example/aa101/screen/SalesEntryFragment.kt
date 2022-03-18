@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -13,6 +14,7 @@ import androidx.fragment.app.viewModels
 import com.example.aa101.R
 import com.example.aa101.data.room.model.SalesHeaders
 import com.example.aa101.databinding.FragmentSalesEntryNewBinding
+import com.example.aa101.util.empty
 import dagger.hilt.android.AndroidEntryPoint
 
 // TODO: Rename parameter arguments, choose names that match
@@ -52,6 +54,7 @@ class SalesEntryFragment : Fragment() {
         // Inflate the layout for this fragment
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_sales_entry_new, container, false)
+        binding.viewModel = viewModel
         return binding.root
     }
 
@@ -66,6 +69,7 @@ class SalesEntryFragment : Fragment() {
         param1.let { binding.header = it }
         if (param1 != null) {
             Log.i(TAG, "header detail is: ${param1.toString()}")
+            viewModel.setHeaderId(param1?.id)
         } else {
             Log.i(TAG, "header detail is NOT AVAILABLE")
         }
@@ -93,11 +97,18 @@ class SalesEntryFragment : Fragment() {
                 viewModel.setItemExtraDetail(it.toString())
             }
         }
+
+        binding.tiedCustomerName.addTextChangedListener {
+            if (!it.isNullOrEmpty()) {
+                viewModel.setCustomerName(it.toString())
+            }
+        }
+
         initCustomerList()
-        observeLiveDatas()
+        observeLiveData()
     }
 
-    private fun observeLiveDatas() {
+    private fun observeLiveData() {
         viewModel.apply {
             customerList.observe(viewLifecycleOwner, {
                 if (!it.isNullOrEmpty()) {
@@ -126,7 +137,52 @@ class SalesEntryFragment : Fragment() {
             amount.observe(viewLifecycleOwner, {
                 binding.tvAmount.text = String.format("%.2f",it ?: 0.0)
             })
+
+            isSalesAdded.observe(viewLifecycleOwner) {
+                if (it) {
+                    showSalesAddedMessage()
+                    clearFields()
+                }
+            }
         }
+    }
+
+    private fun clearFields() {
+        binding.apply {
+            tiedItemDescription.apply {
+                setText(String.empty())
+                clearFocus()
+            }
+            tiedGrossWeight.apply {
+                setText(String.empty())
+                clearFocus()
+            }
+            tiedRate.apply {
+                setText(String.empty())
+                clearFocus()
+            }
+            tiedCustomerName.apply {
+                setText(String.empty())
+                clearFocus()
+            }
+            tiedExtraDetail.apply {
+                setText(String.empty())
+                clearFocus()
+            }
+            tvNetWeight.apply {
+                text = String.empty()
+                clearFocus()
+            }
+            tvAmount.apply {
+                text = String.empty()
+                clearFocus()
+            }
+        }
+        viewModel.resetIsCustomerAdded()
+    }
+
+    private fun showSalesAddedMessage() {
+        Toast.makeText(requireContext(), "Sales Entry Added", Toast.LENGTH_SHORT).show()
     }
 
     private fun initCustomerList() {

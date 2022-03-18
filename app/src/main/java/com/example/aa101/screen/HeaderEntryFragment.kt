@@ -141,6 +141,7 @@ class HeaderEntryFragment : Fragment() {
                         .addToBackStack(null)
                         .commit()
                 }
+                resetMoveToSalesEntry()
             })
         }
     }
