@@ -9,5 +9,5 @@ import com.example.aa101.data.room.model.CreditPayments
 interface CreditPaymentDao {
 
     @Insert(onConflict = ABORT)
-    suspend fun addNewCreditPayment(payment: CreditPayments)
+    suspend fun addNewCreditPayment(payment: CreditPayments): Long
 }

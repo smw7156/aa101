@@ -9,8 +9,8 @@ import dagger.hilt.android.components.ViewModelComponent
 
 interface PaymentRepository {
 
-    suspend fun recordCreditPayment(paymentDetail: CreditPayments)
-    suspend fun recordDebitPayment(paymentDetail: DebitPayments)
+    suspend fun recordCreditPayment(paymentDetail: CreditPayments): Int
+    suspend fun recordDebitPayment(paymentDetail: DebitPayments): Int
 }
 
 @Module

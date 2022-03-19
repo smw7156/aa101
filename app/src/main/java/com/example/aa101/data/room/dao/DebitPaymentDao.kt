@@ -9,6 +9,6 @@ import com.example.aa101.data.room.model.DebitPayments
 interface DebitPaymentDao {
 
     @Insert(onConflict = ABORT)
-    suspend fun addNewDebitPayment(payment: DebitPayments)
+    suspend fun addNewDebitPayment(payment: DebitPayments): Long
 
 }

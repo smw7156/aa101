@@ -62,7 +62,7 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout"
+            android:id="@+id/til_payment_date"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -74,11 +74,14 @@
             app:endIconMode="custom"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_page_title">
+            app:layout_constraintTop_toBottomOf="@id/tv_page_title">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tied_payment_date"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                style="@style/DateTextField"
+                />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -88,9 +91,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_bw_new_sales_data_block"
             android:hint="Amount"
-            app:layout_constraintEnd_toEndOf="@+id/textInputLayout"
-            app:layout_constraintStart_toStartOf="@+id/textInputLayout"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
+            app:layout_constraintEnd_toEndOf="@id/til_payment_date"
+            app:layout_constraintStart_toStartOf="@id/til_payment_date"
+            app:layout_constraintTop_toBottomOf="@id/til_payment_date">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tied_payment_amount"
@@ -105,11 +108,11 @@
             android:layout_width="0dp"
             android:layout_height="@dimen/material_t_i_l_height"
             android:layout_marginTop="@dimen/space_bw_new_sales_data_block"
-            app:layout_constraintEnd_toEndOf="@+id/til_payment_amount"
-            app:layout_constraintStart_toStartOf="@+id/til_payment_amount"
-            app:layout_constraintTop_toBottomOf="@+id/til_payment_amount">
+            app:layout_constraintEnd_toEndOf="@id/til_payment_amount"
+            app:layout_constraintStart_toStartOf="@id/til_payment_amount"
+            app:layout_constraintTop_toBottomOf="@id/til_payment_amount">
 
-            <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+            <AutoCompleteTextView
                 android:id="@+id/tied_payment_to_from"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -128,9 +131,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_bw_new_sales_data_block"
             android:hint="@string/payment_detail"
-            app:layout_constraintEnd_toEndOf="@+id/til_payment_to_from"
-            app:layout_constraintStart_toStartOf="@+id/til_payment_to_from"
-            app:layout_constraintTop_toBottomOf="@+id/til_payment_to_from">
+            app:layout_constraintEnd_toEndOf="@id/til_payment_to_from"
+            app:layout_constraintStart_toStartOf="@id/til_payment_to_from"
+            app:layout_constraintTop_toBottomOf="@id/til_payment_to_from">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tied_payment_detail"
@@ -144,20 +147,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_bw_new_sales_data_block"
-            android:text="Record a payment"
+            android:text="@string/record_payment"
             android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="@+id/textInputLayout"
-            app:layout_constraintTop_toBottomOf="@+id/tblayout_credit_debit" />
+            app:layout_constraintStart_toStartOf="@id/til_payment_date"
+            app:layout_constraintTop_toBottomOf="@id/tblayout_credit_debit" />
 
         <Button
             android:id="@+id/button2"
             android:layout_width="0dp"
             android:layout_height="48dp"
-
             android:layout_marginStart="@dimen/space_bw_new_sales_data_block"
             android:layout_marginEnd="@dimen/space_bw_new_sales_data_block"
             android:layout_marginBottom="@dimen/_32dp_margin"
             android:text="@string/record_payment"
+            android:onClick="@{() -> vm.recordPaymentClick()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

@@ -10,11 +10,11 @@ class PaymentRepoImpl @Inject constructor(
     private val creditPaymentDao: CreditPaymentDao,
     private val debitPaymentDao: DebitPaymentDao,
 ): PaymentRepository {
-    override suspend fun recordCreditPayment(paymentDetail: CreditPayments) {
-        creditPaymentDao.addNewCreditPayment(paymentDetail)
+    override suspend fun recordCreditPayment(paymentDetail: CreditPayments): Int {
+        return creditPaymentDao.addNewCreditPayment(paymentDetail).toInt()
     }
 
-    override suspend fun recordDebitPayment(paymentDetail: DebitPayments) {
-        debitPaymentDao.addNewDebitPayment(paymentDetail)
+    override suspend fun recordDebitPayment(paymentDetail: DebitPayments): Int {
+        return debitPaymentDao.addNewDebitPayment(paymentDetail).toInt()
     }
 }

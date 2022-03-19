@@ -148,6 +148,7 @@ class HeaderEntryFragment : Fragment() {
 
     /**
      * @param v : the view that need to affected by the date selection
+     * HINT: can make this a global funct in util and pass the selected date through closure function
      */
     private fun showDatePickerDialog(v: View?) {
 

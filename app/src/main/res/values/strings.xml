@@ -37,4 +37,8 @@
     <string name="payments">Payments</string>
     <string name="new_sales_sliip">New Sales Slip</string>
     <string name="sales_entry">Sales Entry</string>
+    <string name="record_credit_payment">Record a Credit Payment</string>
+    <string name="record_debit_payment">Record a Debit Payment</string>
+    <string name="received_from">Received from</string>
+    <string name="paid_to">Paid to</string>
 </resources>

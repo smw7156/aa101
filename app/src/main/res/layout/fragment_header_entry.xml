@@ -57,9 +57,7 @@
                 android:id="@+id/ed_received_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:enabled="false"
-                android:inputType="date"
-                android:textColor="@color/text_main" />
+                style="@style/DateTextField" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -84,9 +82,7 @@
                 android:id="@+id/ed_sales_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:enabled="false"
-                android:inputType="date"
-                android:textColor="@color/text_main" />
+                style="@style/DateTextField"  />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -132,7 +128,6 @@
                     android:id="@+id/auto_comp_no_of_box"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:entries="@array/no_1_to_50"
                     android:inputType="number"
                     android:lines="1" />
             </com.google.android.material.textfield.TextInputLayout>

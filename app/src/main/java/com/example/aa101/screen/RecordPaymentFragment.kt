@@ -5,11 +5,21 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.ListAdapter
+import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.example.aa101.R
 import com.example.aa101.databinding.FragmentRecordPaymentBinding
+import com.example.aa101.screen.payment.PaymentType
+import com.example.aa101.util.datePickerDialog
+import com.example.aa101.util.empty
+import com.example.aa101.util.toShowDate
 import com.google.android.material.tabs.TabLayout
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
@@ -26,12 +36,13 @@ private const val TAG = "RecordPaymentFragment"
  * Use the [RecordPaymentFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
+@AndroidEntryPoint
 class RecordPaymentFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
 
-
+    private val viewModel by viewModels<RecordPaymentViewModel>()
     private lateinit var binding: FragmentRecordPaymentBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,6 +59,7 @@ class RecordPaymentFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_record_payment,container,false)
+        binding.vm = viewModel
         return binding.root
     }
 
@@ -87,19 +99,107 @@ class RecordPaymentFragment : Fragment() {
             delay(500L)
             onCreditTabSelected()
         }
+
+        binding.tilPaymentDate.setEndIconOnClickListener {
+            datePickerDialog(requireContext()) {
+                viewModel.setPaymentDate(it)
+            }
+        }
+
+        binding.tiedPaymentToFrom.addTextChangedListener {
+            if (!it.isNullOrEmpty()) {
+                viewModel.setBenef(it.toString())
+            }
+        }
+
+        binding.tiedPaymentAmount.addTextChangedListener {
+            if (!it.isNullOrEmpty()) {
+                viewModel.setPaymentAmount(it.toString().toDouble())
+            }
+        }
+
+        binding.tiedPaymentDetail.addTextChangedListener {
+            if (!it.isNullOrEmpty()) {
+                viewModel.setPaymentDetail(it.toString())
+            }
+        }
+        observeLiveData()
     }
 
-    private fun onCreditTabSelected() {
-        binding.tvPageTitle.text = "Record a Credit Payment"
-        binding.tilPaymentToFrom.hint = "Received from"
-        //reset Benefactor autocomplete adapter list
+    private fun observeLiveData() {
+        viewModel.apply {
+            beneficiaryList.observe(viewLifecycleOwner) {
+                if (!it.isNullOrEmpty()) {
+                    val benefiList = it.toTypedArray()
+                    val adapter = ArrayAdapter<String>(
+                        requireContext(),
+                        android.R.layout.simple_spinner_dropdown_item,
+                        benefiList
+                    )
+                    binding.tiedPaymentToFrom.setAdapter(adapter)
+                }
+            }
+
+            benefactorList.observe(viewLifecycleOwner) {
+                if (!it.isNullOrEmpty()) {
+                    val benefaList = it.toTypedArray()
+                    val adapter = ArrayAdapter<String>(
+                        requireContext(),
+                        android.R.layout.simple_spinner_dropdown_item,
+                        benefaList
+                    )
+                    binding.tiedPaymentToFrom.setAdapter(adapter)
+                }
+            }
+
+            paymentDate.observe(viewLifecycleOwner){
+                binding.tiedPaymentDate.setText(it.toShowDate())
+            }
+
+            paymentType.observe(viewLifecycleOwner) { type ->
+                when (type) {
+                    PaymentType.CREDIT-> {
+                        binding.tvPageTitle.text = getString(R.string.record_credit_payment)
+                        binding.tilPaymentToFrom.hint = getString(R.string.received_from)
+                        getBenefactorList()
+                    }
+                    PaymentType.DEBIT -> {
+                        binding.tvPageTitle.text = getString(R.string.record_debit_payment)
+                        binding.tilPaymentToFrom.hint = getString(R.string.paid_to)
+                        getBeneficiaryList()
+                    }
+                }
+            }
+
+            isPaymentAdded.observe(viewLifecycleOwner) {
+                if (it) {
+                    showPaymentAddedMessage()
+                    clearFields()
+                    resetPaymentAdded()
+                }
+            }
+        }
     }
 
-    private fun onDebitTabSelected() {
-        binding.tvPageTitle.text = "Record a Debit Payment"
-        binding.tilPaymentToFrom.hint = "Paid to"
-        // reset Beneficiary autocomplete adapter list
+    private fun clearFields() {
+        binding.apply {
+            tiedPaymentDate.setText(String.empty())
+            tiedPaymentDate.clearFocus()
+            tiedPaymentAmount.setText(String.empty())
+            tiedPaymentAmount.clearFocus()
+            tiedPaymentDetail.setText(String.empty())
+            tiedPaymentDetail.clearFocus()
+            tiedPaymentToFrom.setText(String.empty())
+            tiedPaymentToFrom.clearFocus()
+        }
     }
+
+    private fun showPaymentAddedMessage() {
+        Toast.makeText(requireContext(), "Payment added", Toast.LENGTH_SHORT).show()
+    }
+    private fun onCreditTabSelected() = viewModel.setPaymentType(PaymentType.CREDIT)
+
+    private fun onDebitTabSelected() = viewModel.setPaymentType(PaymentType.DEBIT)
 
     companion object {
         /**
