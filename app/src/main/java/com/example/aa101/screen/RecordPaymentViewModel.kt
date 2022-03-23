@@ -48,6 +48,9 @@ class RecordPaymentViewModel @Inject constructor(val paymentUseCase: PaymentUseC
     private var _paymentDetail = MutableLiveData<String>()
     val paymentDetail: LiveData<String> get() = _paymentDetail
 
+    private var _paymentPurpose = MutableLiveData<String>()
+    val paymentPurpose: LiveData<String> get() = _paymentPurpose
+
     private var _isPaymentAdded = MutableLiveData<Boolean>(false)
     val isPaymentAdded: LiveData<Boolean> get() = _isPaymentAdded
 
@@ -55,6 +58,7 @@ class RecordPaymentViewModel @Inject constructor(val paymentUseCase: PaymentUseC
     fun setPaymentDate(paymentDate: LocalDate) = _paymentDate.postValue(paymentDate)
     fun setPaymentAmount(amount: Double) = _paymentAmount.postValue(amount)
     fun setPaymentDetail(detail: String) = _paymentDetail.postValue(detail)
+    fun setPaymentPurpose(detail: String) = _paymentPurpose.postValue(detail)
     fun setBenef(name: String) = _concernedParty.postValue(name)
 
     fun getBenefactorList() {
@@ -76,7 +80,7 @@ class RecordPaymentViewModel @Inject constructor(val paymentUseCase: PaymentUseC
                     0,
                     _paymentDate.value!!,
                     _paymentAmount.value!!,
-                    String.empty(),
+                    _paymentPurpose.value!!,
                     _paymentDetail.value,
                     _concernedParty.value
                 )
@@ -93,7 +97,7 @@ class RecordPaymentViewModel @Inject constructor(val paymentUseCase: PaymentUseC
                     0,
                     _paymentDate.value!!,
                     _paymentAmount.value!!,
-                    String.empty(),
+                    _paymentPurpose.value!!,
                     _paymentDetail.value,
                     _concernedParty.value
                 )

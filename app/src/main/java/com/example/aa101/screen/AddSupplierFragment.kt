@@ -56,29 +56,29 @@ class AddSupplierFragment : Fragment() {
 
         binding.tiedSupplierName.addTextChangedListener {
             if (!it.isNullOrEmpty()) {
-                viewModel.setSupplierName(binding.tiedSupplierName.text.toString())
+                viewModel.setSupplierName(it.toString())
             }
         }
 
         binding.tiedSupplierTrademark.addTextChangedListener{
             if (!it.isNullOrEmpty()) {
-                viewModel.setSupplierTradeMark(binding.tiedSupplierTrademark.text.toString())
+                viewModel.setSupplierTradeMark(it.toString())
             }
         }
 
         binding.tiedSupplierPhoneNo.addTextChangedListener {
             if (!it.isNullOrEmpty()) {
-                viewModel.setSupplierMobile(binding.tiedSupplierPhoneNo.text.toString())
+                viewModel.setSupplierMobile(it.toString())
             }
         }
         binding.tiedSupplierEmail.addTextChangedListener {
             if (!it.isNullOrEmpty()) {
-                viewModel.setSupplierEmail(binding.tiedSupplierEmail.text.toString())
+                viewModel.setSupplierEmail(it.toString())
             }
         }
         binding.tiedSupplierAddress.addTextChangedListener {
             if (!it.isNullOrEmpty()) {
-                viewModel.setSupplierEmail(binding.tiedSupplierAddress.text.toString())
+                viewModel.setSupplierAddress(it.toString())
             }
         }
         observeLiveData()

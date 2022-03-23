@@ -1,9 +1,6 @@
 package com.example.aa101.data.room.model
 
-import androidx.room.Entity
-import androidx.room.ForeignKey
-import androidx.room.PrimaryKey
-import androidx.room.TypeConverters
+import androidx.room.*
 import com.example.aa101.data.room.converter.DateToLongConverter
 import java.time.LocalDate
 
@@ -15,7 +12,8 @@ import java.time.LocalDate
         childColumns = ["benefactor"],
         onDelete = ForeignKey.NO_ACTION,
         onUpdate = ForeignKey.CASCADE,
-    )]
+    )],
+    indices = [Index(value = ["purpose"])]
 )
 data class CreditPayments(
     @PrimaryKey(autoGenerate = true)

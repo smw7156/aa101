@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.ListAdapter
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
@@ -123,6 +122,11 @@ class RecordPaymentFragment : Fragment() {
                 viewModel.setPaymentDetail(it.toString())
             }
         }
+        binding.autoCmpPaymentPurpose.addTextChangedListener {
+            if (!it.isNullOrEmpty()) {
+                viewModel.setPaymentPurpose(it.toString())
+            }
+        }
         observeLiveData()
     }
 
@@ -191,15 +195,35 @@ class RecordPaymentFragment : Fragment() {
             tiedPaymentDetail.clearFocus()
             tiedPaymentToFrom.setText(String.empty())
             tiedPaymentToFrom.clearFocus()
+            autoCmpPaymentPurpose.setText(String.empty())
+            autoCmpPaymentPurpose.clearFocus()
         }
     }
 
     private fun showPaymentAddedMessage() {
         Toast.makeText(requireContext(), "Payment added", Toast.LENGTH_SHORT).show()
     }
-    private fun onCreditTabSelected() = viewModel.setPaymentType(PaymentType.CREDIT)
+    private fun onCreditTabSelected() {
+        viewModel.setPaymentType(PaymentType.CREDIT)
+        val creditPurposeList = resources.getStringArray(R.array.credit_purpose)
+        val adapter = ArrayAdapter<String>(
+            requireContext(),
+            android.R.layout.simple_spinner_dropdown_item,
+            creditPurposeList
+        )
+        binding.autoCmpPaymentPurpose.setAdapter(adapter)
+    }
 
-    private fun onDebitTabSelected() = viewModel.setPaymentType(PaymentType.DEBIT)
+    private fun onDebitTabSelected(){
+        viewModel.setPaymentType(PaymentType.DEBIT)
+        val debitPurposeList = resources.getStringArray(R.array.debit_purpose)
+        val adapter = ArrayAdapter<String>(
+            requireContext(),
+            android.R.layout.simple_spinner_dropdown_item,
+            debitPurposeList
+        )
+        binding.autoCmpPaymentPurpose.setAdapter(adapter)
+    }
 
     companion object {
         /**

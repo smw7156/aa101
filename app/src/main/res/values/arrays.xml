@@ -80,4 +80,19 @@
         <item>Aerated tin box</item>
         <item>Sintex box</item>
     </string-array>
+
+    <string-array name="credit_purpose">
+        <item>Customer Payment</item>
+        <item>Loan</item>
+        <item>Loan Refund</item>
+    </string-array>
+
+    <string-array name="debit_purpose">
+        <item>Party Payment</item>
+        <item>Party Expense</item>
+        <item>Drawings</item>
+        <item>Petty Expense</item>
+        <item>Non Chargeable Expense</item>
+        <item>Lending Loan</item>
+    </string-array>
 </resources>

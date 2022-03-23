@@ -60,32 +60,32 @@ class AddCustomerFragment : Fragment() {
 
         binding.tiedCustomerName.addTextChangedListener {
             if (!it.isNullOrEmpty()) {
-                viewModel.setCustomerName(binding.tiedCustomerName.text.toString())
+                viewModel.setCustomerName(it.toString())
             }
         }
 
         binding.tiedCustomerInitial.addTextChangedListener {
             if (!it.isNullOrEmpty()) {
                 viewModel.checkForValidInitial(it.toString())
-                viewModel.setCustomerInitial(binding.tiedCustomerInitial.text.toString())
+                viewModel.setCustomerInitial(it.toString())
             }
         }
 
         binding.tiedCustomerPhoneNo.addTextChangedListener {
             if (!it.isNullOrEmpty()) {
-                viewModel.setCustomerMobNo(binding.tiedCustomerPhoneNo.text.toString())
+                viewModel.setCustomerMobNo(it.toString())
             }
         }
 
         binding.tiedCustomerEmail.addTextChangedListener {
             if (!it.isNullOrEmpty()) {
-                viewModel.setCustomerEmail(binding.tiedCustomerEmail.text.toString())
+                viewModel.setCustomerEmail(it.toString())
             }
         }
 
         binding.tiedCustomerAddress.addTextChangedListener {
             if (!it.isNullOrEmpty()) {
-                viewModel.setCustomerAddress(binding.tiedCustomerAddress.text.toString())
+                viewModel.setCustomerAddress(it.toString())
             }
         }
         observeViewModel()

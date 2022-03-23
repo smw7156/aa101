@@ -65,7 +65,7 @@
             android:id="@+id/til_payment_date"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/material_t_i_l_height"
             android:layout_marginStart="@dimen/space_bw_new_sales_data_block"
             android:layout_marginTop="@dimen/_8dp_margin"
             android:layout_marginEnd="@dimen/space_bw_new_sales_data_block"
@@ -88,7 +88,7 @@
             android:id="@+id/til_payment_amount"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/material_t_i_l_height"
             android:layout_marginTop="@dimen/space_bw_new_sales_data_block"
             android:hint="Amount"
             app:layout_constraintEnd_toEndOf="@id/til_payment_date"
@@ -125,15 +125,37 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_payment_purpose"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/material_t_i_l_height"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_marginTop="@dimen/space_bw_new_sales_data_block"
+            app:layout_constraintEnd_toEndOf="@id/til_payment_to_from"
+            app:layout_constraintStart_toStartOf="@id/til_payment_to_from"
+            app:layout_constraintTop_toBottomOf="@id/til_payment_to_from">
+
+            <AutoCompleteTextView
+                android:id="@+id/auto_cmp_payment_purpose"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="purpose"
+                android:paddingStart="@dimen/_16dp_margin"
+                android:paddingTop="@dimen/_4dp_margin"
+                android:paddingEnd="@dimen/_16dp_margin"
+                android:paddingBottom="@dimen/_4dp_margin"
+                android:textSize="16sp"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_payment_detail"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_bw_new_sales_data_block"
             android:hint="@string/payment_detail"
-            app:layout_constraintEnd_toEndOf="@id/til_payment_to_from"
-            app:layout_constraintStart_toStartOf="@id/til_payment_to_from"
-            app:layout_constraintTop_toBottomOf="@id/til_payment_to_from">
+            app:layout_constraintEnd_toEndOf="@id/til_payment_purpose"
+            app:layout_constraintStart_toStartOf="@id/til_payment_purpose"
+            app:layout_constraintTop_toBottomOf="@id/til_payment_purpose">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tied_payment_detail"
