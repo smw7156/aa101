@@ -33,5 +33,5 @@ data class SalesHeaders(
     val noOfBoxs: Int,
     val boxType: String, //is Missing TODO() <-
     val transportMedium: String,
-    val transportDetail: String,
+    val transportDetail: String?,
 ) : Parcelable

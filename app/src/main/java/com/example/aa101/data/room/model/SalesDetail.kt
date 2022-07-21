@@ -31,5 +31,5 @@ data class SalesDetail(
     val grossWeight: Double,
     val rate: Double,
     val buyer: String,
-    val itemExtraDescription: String,
+    val itemExtraDescription: String?,
 )

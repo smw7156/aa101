@@ -14,52 +14,50 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/sale_entry_ED_bg_color"
         android:paddingTop="@dimen/_8dp_margin"
-        android:paddingBottom="@dimen/_8dp_margin"
-        android:background="@color/teal_700"
-        >
+        android:paddingBottom="@dimen/_8dp_margin">
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_party_name"
-            tools:text="PARTY/PLACE"
-            android:textSize="24sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="@dimen/_16dp_margin"
             android:text="@{header.partyTradeMark}"
-            android:layout_marginStart="@dimen/_16dp_margin" />
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="PARTY/PLACE" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/ll_dates"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_8dp_margin"
+            android:gravity="end|center_vertical"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/tv_party_name"
-            app:layout_constraintTop_toTopOf="parent"
-            android:gravity="end|center_vertical">
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="end|center_vertical">
+                android:gravity="end|center_vertical"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Recv At: "
+                    android:textSize="16sp" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
-                    android:text="Recv At: " />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    tools:text="22-Dec-2022"
                     app:setDateText="@{header.dateOfReceived}"
-                    />
+                    tools:text="22-Dec-2022" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -70,23 +68,23 @@
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="end|center_vertical">
+                android:gravity="end|center_vertical"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:text="Sold At: "
+                    android:textSize="16sp" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
                     android:textSize="16sp"
-                    android:text="Sold At: " />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:textSize="16sp"
-                    tools:text="23-Dec-2022"
-                    app:setDateText="@{header.dateOfSale}"/>
+                    app:setDateText="@{header.dateOfSale}"
+                    tools:text="23-Dec-2022" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -97,47 +95,47 @@
             android:id="@+id/tv_no_of_box"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
             android:layout_marginTop="@dimen/_8dp_margin"
+            android:text="@{String.valueOf(header.noOfBoxs)}"
+            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="@id/tv_party_name"
             app:layout_constraintTop_toBottomOf="@id/tv_party_name"
-            tools:text="100"
-            android:text="@{String.valueOf(header.noOfBoxs)}"/>
+            tools:text="100" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_type_of_box"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
             android:layout_marginStart="@dimen/_8dp_margin"
+            android:text="@{header.boxType}"
+            android:textSize="18sp"
             app:layout_constraintBaseline_toBaselineOf="@+id/tv_no_of_box"
             app:layout_constraintStart_toEndOf="@id/tv_no_of_box"
-            tools:text="TC Box"
-            android:text="@{header.boxType}"/>
+            tools:text="TC Box" />
 
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_transport_medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
             android:layout_marginTop="@dimen/_8dp_margin"
+            android:text="@{header.transportMedium}"
+            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="@id/tv_no_of_box"
             app:layout_constraintTop_toBottomOf="@id/tv_no_of_box"
-            tools:text="By Train"
-            android:text="@{header.transportMedium}"/>
+            tools:text="By Train" />
 
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_transport_detail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
             android:layout_marginStart="@dimen/_8dp_margin"
+            android:text="@{header.transportDetail}"
+            android:textSize="18sp"
             app:layout_constraintBaseline_toBaselineOf="@+id/tv_transport_medium"
             app:layout_constraintStart_toEndOf="@id/tv_party_name"
-            tools:text="18006 DN"
-            android:text="@{header.transportDetail}"/>
+            tools:text="18006 DN" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

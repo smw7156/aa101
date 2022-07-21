@@ -11,6 +11,9 @@ import androidx.databinding.DataBindingUtil
 import com.example.aa101.data.room.SalesDatabase
 import com.example.aa101.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -84,8 +87,9 @@ class HomeFragment : Fragment() {
     }
 
     private fun initDao() {
-        val salesHeaderDao =
-            SalesDatabase.getRoomDBInstance(requireContext().applicationContext).salesHeaderDao()
+        CoroutineScope(Dispatchers.IO).launch {
+            SalesDatabase.getRoomDBInstance(requireContext().applicationContext)
+        }
     }
 
 
